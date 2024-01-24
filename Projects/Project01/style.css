@@ -103,6 +103,14 @@ body > div{
     background-color: rgb(10, 10, 10);
 }
 
+.rodape{
+    color: white;
+    text-align: right;
+    justify-content: center;
+    padding-top: 2%;
+    font-size: 0.8rem;
+}
+
 @keyframes scale{
     0%{
         transform: scale(1);
