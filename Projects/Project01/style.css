@@ -60,6 +60,7 @@ body > div{
     font-family: var(--ff);
     color: yellow;
     font-size: 2.3rem;
+    animation: scale 1.9s infinite ease-in-out;
 }
 
 .p2{
@@ -68,6 +69,7 @@ body > div{
     font-family: var(--ff);
     color: blue;
     font-size: 2.3rem;
+    animation: scale 1.9s infinite ease-in-out;
 }
 
 .container{
