@@ -3,11 +3,6 @@ const containergame = document.querySelector(".containergame")
 const timeStartGame = document.querySelector(".time")
 var timeStart = 3
 
-const player1 = true; 
-const player2 = false;
-var currentplayer = "X";
-
-
 startpage.addEventListener('click', () => {
     startpage.style.display = 'none';
     timeStartGame.style.display = 'flex';
