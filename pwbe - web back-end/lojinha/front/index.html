@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        <h1>Listar todos os Clientes</h1>
+    </header>
+    <main>
+    <table> 
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>CPF</th>
+                    <th>Nome Completo</th>
+                    <th>Nacimento</th>
+                </tr>
+            </thead>
+            <tbody id="dados">
+                    
+            </tbody>
+        
+        </table>
+    </main> 
+    <footer>
+        Assinado: Vinicíus Manzano
+    </footer>
+</body>
+<script>
+    const dados = document.getElementById('dados');
+    fetch("http://localhost:3000/Clientes")
+    .then(res => res.json())
+    .then(res => {
+        res.forEach(e => {
+            dados.innerHTML += `
+            <tr>
+                <td>${e.id}</td>
+                <td>${e.cpf}</td>
+                <td>${e.nome} ${e.sobrenome}</td>
+                <td>${e.nascimento}</td>
+            </tr>
+            `
+        });
+    })
+</script>    
+</html>

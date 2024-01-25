@@ -22,3 +22,5 @@ insert into Clientes(cpf, nome, sobrenome, nascimento) values
 
 select * from Clientes;
 
+
+
