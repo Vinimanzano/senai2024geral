@@ -19,13 +19,13 @@
     </footer>
 </body>
 <script>
-   const erro = document.querySelector('#eroo');
+   const erro = document.querySelector('#erro');
    const url = window.location.search;
-   const params = new URLSearchParams(url);
+   const paramas = new URLSearchParams(url);
    const msg = paramas.get('erro');
    const cod = paramas.get('err');
    document.querySelector('#erro').innerHTML = msg;
-   document.querySelector('#error').innerHTML += "<br>Código do erro:" + cod
+   document.querySelector('#erro').innerHTML += "<br>Código do erro:" + cod
 
 </script>    
 </html>

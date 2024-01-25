@@ -26,7 +26,7 @@ const create = (req, res) => {
     query += `('${cpf}', '${nome}', '${sobrenome}', '${nascimento}');`;
     con.query(query, (err, result) => {
         if (err)
-            res.redirect('http://127.0.0.1:5501/front/erro.html?erro=CPF JÁ CADASTRADO&err=' + err.code);
+            res.redirect('http://127.0.0.1:5500/front/erro.html?erro=CPF JÁ CADASTRADO&err=' + err.code);
         else
             res.redirect('http://127.0.0.1:5500/front/index.html');
     });
