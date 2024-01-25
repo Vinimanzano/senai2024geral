@@ -20,4 +20,4 @@ values
 ("444.444.444-44","Jaera","Silveira","1982-04-13"),
 ("555.555.555-55","Jacinto","Pena","2005-05-15");
 
-select * from Clientes;
+select * from Clientes;""
