@@ -19,20 +19,13 @@
     </footer>
 </body>
 <script>
-    const dados = document.getElementById('dados');
-    fetch("http://localhost:3000/Clientes")
-    .then(res => res.json())
-    .then(res => {
-        res.forEach(e => {
-            dados.innerHTML += `
-            <tr>
-                <td>${e.id}</td>
-                <td>${e.cpf}</td>
-                <td>${e.nome} ${e.sobrenome}</td>
-                <td>${e.nascimento}</td>
-            </tr>
-            `
-        });
-    })
+   const erro = document.querySelector('#eroo');
+   const url = window.location.search;
+   const params = new URLSearchParams(url);
+   const msg = paramas.get('erro');
+   const cod = paramas.get('err');
+   document.querySelector('#erro').innerHTML = msg;
+   document.querySelector('#error').innerHTML += "<br>Código do erro:" + cod
+
 </script>    
 </html>
