@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Formulario</title>
+</head>
+<body>
+   
+    <header>
+        <h1>Cadastro de clientes</h1>
+    </header>
+    <main>
+        <form action="http://localhost:3000/Clientes" method="post">
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="text" name="sobrenome" placeholder="Sobrenome" plarequired>
+            <input type="text" name="cpf" placeholder="CPF" required>
+            <input type="date" name="nascimento" placeholder="Nascimento" required>
+            <input class="btn" type="submit" value="Enviar">
+        </form>
+    </main>
+    <footer>
+        <h2>Assinado: Vinícius Manzano</h2>
+    </footer>
+</body>
+</html>
