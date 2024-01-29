@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital@1&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--ff);
+}
+
+:root{
+    --ff:'Arimo', sans-serif;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(http://source.unsplash.com/1920x1080/?landscape);
+    background-size: cover;
+}
+
+.caixa-maior{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 220px;
+    background: rgb(20, 20, 20);
+    opacity: 0.8;
+    border-radius: 25px;
+    padding: 20px;
+    color: white;
+    gap: 30px;
+}
+
+.botao img {
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-cidade{
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #7c7c7c2b;
+    color: rgb(80, 160, 230)
+    
+}
