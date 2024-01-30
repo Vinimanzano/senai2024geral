@@ -21,8 +21,8 @@ const create = (req, res) => {
     let artista = req.body.artista;
     let musica = req.body.musica;
     let album = req.body.album;
-    let query = `INSERT INTO clientes(artista, musica, album) VALUE`;
-    query += `('${Artista}', '${Musica}', '${Album}');`;
+    let query = `INSERT INTO Musicas(artista, musica, album) VALUE`;
+    query += `('${artista}', '${musica}', '${album}');`;
     con.query(query, (err, result) => {
         if (err)
             res.redirect('http://127.0.0.1:5500/front/erro.html?erro=musica JÁ CADASTRADA&err=' + err.code);
@@ -33,7 +33,7 @@ const create = (req, res) => {
 
 //CRUD - Read
 const read = (req, res) => {
-    con.query("SELECT * FROM Clientes ORDER BY NOME", (err, result) => {
+    con.query("SELECT * FROM Musicas ORDER BY id", (err, result) => {
         if (err)
             res.json(err);
         else

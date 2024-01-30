@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form</title>
-</head>
-<body>
-   
+    <link rel="stylesheet" href="./style2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <h1></h1>
+      <div class="logo">
+        <img src="./assets/img/logo.png" alt="logotipo" />
+        <span>Spotify da Shopee</span>
+      </div>
     </header>
-    
+
     <main>
-        <form action="http://localhost:3000/Musicas" method="post">
-            <input type="text" name="artista" placeholder="Artista" required>
-            <input type="text" name="musica" placeholder="Musica" plarequired>
-            <input type="text" name="album" placeholder="Album" required>
-            <input class="btn" type="submit" value="Enviar">
-        </form>
+      <form
+        action="http://localhost:3000/Musicas"
+        method="post"
+      >
+        <input
+          type="text"
+          name="artista"
+          placeholder="Artista"
+          required
+        />
+        <input
+          type="text"
+          name="musica"
+          placeholder="Música"
+          required
+        />
+        <input type="text" name="album" placeholder="Álbum" required/>
+        <input class="btn" type="submit" value="Enviar" />
+      </form>
     </main>
 
     <footer>
-        <div>
-            <span>Carlos Rodrigues</span>
-            <a href="https://github.com/CarlosAugustoRodrigues" target="_blank">
-                <i class="bi bi-github"></i>
-            </a>
-        </div>
-        <div>
-            <span>Vinícius Manzano</span>
-            <a href="https://github.com/vinimanzano" target="_blank">
-                <i class="bi bi-github"></i>
-            </a>
-        </div>
+      <div>
+        <span>Carlos Rodrigues</span>
+        <a href="https://github.com/CarlosAugustoRodrigues" target="_blank">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
+      <div>
+        <span>Vinícius Manzano</span>
+        <a href="https://github.com/vinimanzano" target="_blank">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
     </footer>
-</body>
+  </body>
 </html>
