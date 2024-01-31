@@ -33,7 +33,6 @@
     const url = window.location.search;
     const params = new URLSearchParams(url);
     const msg = params.get('erro');
-    const cod = params.get('err');
-    erro.innerHTML = `${msg} - ${cod}`;
+    erro.innerHTML = `${msg}`;
 </script>
 </html>
