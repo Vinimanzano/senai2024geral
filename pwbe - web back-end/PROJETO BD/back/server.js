@@ -22,18 +22,6 @@ const create = (req, res) => {
     let musica = req.body.musica;
     let album = req.body.album;
     let duracao = req.body.duracao;
-<<<<<<< HEAD
-    
-    
-
-    let query = `INSERT INTO Musicas(artista, musica, album, duracao) VALUE`;
-    query += `('${artista}', '${musica}', '${album}', '${duracao}');`;
-    con.query(query, (err, result) => {
-        if (err)
-            res.redirect('http://127.0.0.1:5500/front/erro.html?erro=MÚSICA JÁ CADASTRADA&err=Código do Erro: ' + err.code);
-        else
-            res.redirect('http://127.0.0.1:5500/front/index.html');
-=======
 
     con.query("SELECT * FROM Musicas WHERE artista = ? AND musica = ?", [artista, musica], (err, result) => {
         if (err) {
@@ -50,7 +38,6 @@ const create = (req, res) => {
                     res.redirect('http://127.0.0.1:5500/front/index.html');
             });
         }
->>>>>>> 79be4326f27d5990d69cf7195cbb7086a46907ab
     });
 }
 
