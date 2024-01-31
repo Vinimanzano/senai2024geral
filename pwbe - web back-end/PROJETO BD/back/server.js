@@ -22,6 +22,9 @@ const create = (req, res) => {
     let musica = req.body.musica;
     let album = req.body.album;
     let duracao = req.body.duracao;
+    
+    
+
     let query = `INSERT INTO Musicas(artista, musica, album, duracao) VALUE`;
     query += `('${artista}', '${musica}', '${album}', '${duracao}');`;
     con.query(query, (err, result) => {
