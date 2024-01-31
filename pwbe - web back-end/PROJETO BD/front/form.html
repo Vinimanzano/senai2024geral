@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form</title>
+    <title>Inserir Música</title>
     <link rel="stylesheet" href="./style2.css" />
     <link
       rel="stylesheet"
@@ -19,10 +19,13 @@
     </header>
 
     <main>
+      <a href="./index.html">Lista de Músicas</a>
+
       <form action="http://localhost:3000/Musicas" method="post">
         <input type="text" name="artista" placeholder="Artista" required/>
         <input type="text" name="musica" placeholder="Música" required/>
         <input type="text" name="album" placeholder="Álbum" required/>
+        <input type="text" name="duracao" placeholder="Duração" required/>
         <input class="btn" type="submit" value="Enviar"/>
       </form>
     </main>

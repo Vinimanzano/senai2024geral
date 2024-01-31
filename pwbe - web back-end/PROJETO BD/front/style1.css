@@ -6,6 +6,7 @@
     font-family: 'Chakra Petch', sans-serif;
     /* font-family: 'Cute Font', sans-serif; */
     /* font-family: 'Poor Story', system-ui; */
+    text-decoration: none;
 }
 
 body {
@@ -45,6 +46,30 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+main a {
+    font-size: 1.2rem;
+    width: 170px;
+    height: 50px;
+    border-radius: 5px;
+    background: rgb(20, 20, 20);
+    color: rgb(0, 200, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+main a:hover {
+    transform: translate(-8px, -8px);
+    box-shadow: 8px 8px 5px rgb(50, 200, 170);
+    cursor: pointer;
+}
+main a:active {
+    transform: translate(0, 0);
+    box-shadow: none;
 }
 
 main table {

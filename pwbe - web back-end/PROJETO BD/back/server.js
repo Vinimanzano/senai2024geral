@@ -21,11 +21,12 @@ const create = (req, res) => {
     let artista = req.body.artista;
     let musica = req.body.musica;
     let album = req.body.album;
-    let query = `INSERT INTO Musicas(artista, musica, album) VALUE`;
-    query += `('${artista}', '${musica}', '${album}');`;
+    let duracao = req.body.duracao;
+    let query = `INSERT INTO Musicas(artista, musica, album, duracao) VALUE`;
+    query += `('${artista}', '${musica}', '${album}', '${duracao}');`;
     con.query(query, (err, result) => {
         if (err)
-            res.redirect('http://127.0.0.1:5500/front/erro.html?erro=Código do Erro: ' + err.code);
+            res.redirect('http://127.0.0.1:5500/front/erro.html?erro=MÚSICA JÁ CADASTRADA&err=Código do Erro: ' + err.code);
         else
             res.redirect('http://127.0.0.1:5500/front/index.html');
     });

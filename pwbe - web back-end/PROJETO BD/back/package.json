@@ -1,12 +1,12 @@
 {
-    "name": "clientesfull",
+    "name": "spotify_da_shopee",
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "Guto e Vini",
     "license": "ISC",
     "dependencies": {
         "body-parser": "^1.20.2",
