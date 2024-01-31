@@ -5,7 +5,7 @@ use Spotify_da_Shopee;
 create table Musicas(
     id integer primary key auto_increment,
     artista varchar(50) not null,
-    musica varchar(100) not null unique,
+    musica varchar(100) not null,
     album varchar(100) not null,
     duracao varchar (5) not null
 );
