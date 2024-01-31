@@ -25,7 +25,7 @@ const create = (req, res) => {
     query += `('${artista}', '${musica}', '${album}');`;
     con.query(query, (err, result) => {
         if (err)
-            res.redirect('http://127.0.0.1:5500/front/erro.html?erro=musica JÁ CADASTRADA&err=' + err.code);
+            res.redirect('http://127.0.0.1:5500/front/erro.html?erro=Código do Erro: ' + err.code);
         else
             res.redirect('http://127.0.0.1:5500/front/index.html');
     });

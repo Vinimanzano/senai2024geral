@@ -5,7 +5,7 @@ use Spotify_da_Shopee;
 create table Musicas(
     id integer primary key auto_increment,
     artista varchar(50) not null,
-    musica varchar(100) not null,
+    musica varchar(100) not null unique,
     album varchar(100) not null
 );
 describe musicas;
@@ -14,14 +14,14 @@ describe musicas;
 insert into Musicas(artista, musica, album)
 values
 ("Drake","Virginia Beach","For All the Dogs"),
-("Drake","Calling For You","For All the Dogs"),
 ("Drake","Slime You Out","For All the Dogs"),
-("Drake","Wick Man","For All the Dogs Scary Hours Edition"),
-("Drake","God's plan","Scorpion"),
 ("Drake","Hotline Bling","Views"),
-("Drake","Laugh Now Cry Later","Laugh Now Cry Later"),
 ("Drake","Life Is Good","High Off Life"),
 ("Drake","Another Late Night","For All the Dogs"),
-("Drake","Headlines","Take Care");
+("Kansas","Carry on Wayward Son","Leftoverture"),
+("Shaman","Fairy Tale","Ritual"),
+("Metallica","Master of Puppets","Master of Puppets"),
+("Avenged Sevenfold","Cosmic","Life Is but a Dream…"),
+("Audioslave","Like a Stone","Audioslave");
 
 select * from Musicas;
