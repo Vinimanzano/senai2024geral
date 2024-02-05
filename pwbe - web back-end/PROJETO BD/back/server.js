@@ -23,6 +23,7 @@ const create = (req, res) => {
     let album = req.body.album;
     let duracao = req.body.duracao;    
 
+<<<<<<< HEAD
     let query = `INSERT INTO Musicas(artista, musica, album, duracao) VALUE`;
     query += `('${artista}', '${musica}', '${album}', '${duracao}');`;
     con.query(query, (err, result) => {
@@ -31,6 +32,8 @@ const create = (req, res) => {
         else
             res.redirect('http://127.0.0.1:5500/front/index.html');
         });
+=======
+>>>>>>> 16528564029a438e75a8c6c4f20e5c99d3e29d36
     con.query("SELECT * FROM Musicas WHERE artista = ? AND musica = ?", [artista, musica], (err, result) => {
         if (err) {
             res.redirect('http://127.0.0.1:5500/front/erro.html?erro=ERRO INESPERADO');
