@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PapelTudo</title>
+</head>
+<body onload="loadClientes()">
+    <div class="topo">
+    <header>
+           <h1>Inventário - Papelaria PepelTudo</h1>
+        <label>
+
+        </label>
+            <div class="janela">
+        <form id="criar">        
+            <div class="input">
+                <label for="id">ID</label>
+                <input type="text" name="Id" required>
+            </div>   
+            <div>
+                <label for="id">Nome</label>
+                <input type="text" name="Nome"required>
+            </div>   
+            <div>
+                <label for="id">Descriçao</label>
+                <input type="text" name="Descriçao" required>
+            </div>   
+            <div>
+                <label for="id">Valor</label>
+                <input type="text" name="Valor" required>
+            </div>   
+            <div>
+                <label for="id">Ação</label>
+                <button class="cadastro">Cadastrar</button>
+            </div>
+            </div>
+    </header>    
+    </div>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descriçao</th>
+                    <th>Valor</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td>I001</td>
+                    <td>Mesa</td>
+                    <td>Mesa de Escritório</td>
+                    <td>100</td>
+                    <td>
+                        <button>[ - ]</button>
+                        <button>[ X ]</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>i002</td>
+                    <td>Computador</td>
+                    <td>Desktop DEL i5, 8gb RAM, SSD 500GB</td>
+                    <td>2200</td>
+                    <td>
+                        <button>[ - ]</button>
+                        <button>[ X ]</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>i003</td>
+                    <td>Cadeira</td>
+                    <td>Cadeira giratória de Escritório</td>
+                    <td>500</td>
+                    <td>
+                        <button>[ - ]</button>
+                        <button>[ X ]</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>i004</td>
+                    <td>Longarina</td>
+                    <td>Longarina de três cadeiras</td>
+                    <td>450</td>
+                    <td>
+                        <button>[ - ]</button>
+                        <button>[ X ]</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>i007</td>
+                    <td>Multifuncional</td>
+                    <td>Impressora e copiadora Multifuncional xerox</td>
+                    <td>2000</td>
+                    <td>
+                        <button>[ - ]</button>
+                        <button>[ X ]</button>
+                    </td>
+                </tr> -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <div class="rodape">
+            <div class="sistema">    
+                Mensagem do Sistema:
+                <div class="box">
+                </div>
+            </div>   
+            <div class="patrimonio">
+                Patrimônio total:
+                <div class="box2">
+                    <!-- RS$ 5,250,00 -->
+                </div>
+            </div>   
+        </div>
+
+    </footer>
+</body>
+<script>
+    const dados = document.getElementById('dados');
+    fetch('http://localhost:3000/clientes')
+        .then(res => res.json())
+        .then(res => {
+            res.forEach(cli => {
+                dados.innerHTML += `
+                    <tr>
+                        <td>${cli.id}</td>
+                        <td>${cli.nome}</td>
+                        <td>${cli.Descriçao}</td>
+                        <td>${cli.valor}</td>
+                        <td>${cli.Ação}</td>
+                        <td>
+                            <button onclick='del(${cli.id})'>[ - ]</button>
+                            <button onclick='window.location.href="./update.html?id=${cli.id}&cpf=${cli.nome}&nome=${cli.Descriçao}&sobrenome=${cli.valor}&nascimento=${cli.açao}"'>
+                                [ * ]
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+
+    function del(id) {
+        fetch(`http://localhost:3000/clientes/${id}`,{method: 'DELETE'})
+            .then(res => res.json())
+            .then(res => {
+                window.location.reload();
+            });
+    }
+</script>
+
+</html>
