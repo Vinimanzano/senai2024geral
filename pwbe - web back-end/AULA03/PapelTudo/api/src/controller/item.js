@@ -6,9 +6,8 @@ const create = (req, res) => {
     let nome = req.body.nome;
     let descricao = req.body.descricao;
     let valor = req.body.valor;
-    let acao = req.body.acao;
-    let query = `INSERT INTO item(nome, descricao, valor, acao) VALUE`;
-    query += `('${nome}', '${descricao}', '${valor}', '${acao}');`;
+    let query = `INSERT INTO item(nome, descricao, valor) VALUE`;
+    query += `('${nome}', '${descricao}', '${valor}');`;
     con.query(query, (err, result) => {
         if (err)
             res.status(400).json(err).end();
@@ -22,7 +21,7 @@ const create = (req, res) => {
 
 //CRUD - Read
 const read = (req, res) => {
-    con.query("SELECT * FROM item ORDER BY id DESC", (err, result) => {
+    con.query("SELECT * FROM item", (err, result) => {
         if (err)
             res.json(err);
         else
@@ -35,9 +34,8 @@ const update = (req, res) => {
     let id = req.params.id;
     let nome = req.body.nome;
     let descricao = req.body.descricao;
-    let valor = req.body.valor;
-    let acao = req.body.acao;
-    let query = `UPDATE item SET nome = '${nome}', descricao = '${descricao}', valor = '${valor}', acao = '${acao}' WHERE id = ${id}`;
+    let  = req.body.valor;
+    let query = `UPDATE item SET nome = '${nome}', descricao = '${descricao}', valor = '${valor}' WHERE id = ${id}`;
     con.query(query, (err, result) => {
         if (err)
             res.status(400).json(err).end;
