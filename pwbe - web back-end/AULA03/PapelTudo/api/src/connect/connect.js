@@ -1,11 +1,9 @@
-//Dependências - Frameworks
-const mysql = require("mysql");
+const mysql = require('mysql');
 
-//Conexão com o SGBD MySQL
 const con = mysql.createConnection({
-    user: 'root',
     host: 'localhost',
+    user: 'root',
     database: 'inventario'
 });
 
-module.exports = { con };
+module.exports = { con }

@@ -1,175 +1,227 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Courier Prime", monospace;
 }
 
-body{
+:root {
+    --white: #FFF;
+    --black: #000;
+    --orange: #F38F00;
+    --hoverOrange: #e08300;
+    --table-odd: #ecd9be;
+    --red: #7F0000;
+
+    --error: #ff3333;
+
+    --ff-primary: "Kanit", sans-serif;
+
+    --CourierNew: "Rubik", sans-serif;
+}
+
+/* Global */
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 0 10px 10px 0;
+    background-color: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0 10px 10px 0;
+    background-color: var(--orange);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.error {
+    background-color: var(--error);
+    color: var(--white);
+}
+
+.container {
+    width: 90%;
+    height: 100%;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid var(--orange);
+    padding: 20px;
+    border-radius: 8px;
+
+    font-family: var(--ff-primary);
+}
+
+body {
     width: 100vw;
     height: 100vh;
-    padding: 15px;
-    gap: 15px;
 }
 
-header{
-    width: 96.5vw;
-    height: 19vh;
+header {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: 1px solid #F38F00;
-    border-radius: 12px;
+    width: 100vw;
+    height: 15%;
+
+    padding-top: 20px;
 }
 
-header h1{
-    margin-bottom: 30px;
-}
-
-h2{
+.header-form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    gap: 10px;
 
-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.janela{
     font-weight: bold;
-    font-size: 1.3rem;
 }
 
-input{
+.header-form div {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #F38F00;
-    border-radius: 15px;
-    padding: 9px;
+    flex-direction: column;
+}
+
+.header-form div label {
+    margin-bottom: 5px;
+}
+
+input {
+    width: 200px;
+
+    border: 1px solid var(--orange);
+    border-radius: 8px;
+    padding: 5px;
     outline: none;
 }
 
-.cadastro{
-    width: 8vw;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
+.header-form div input[type="submit"] {
+    width: 100px;
+    background-color: var(--orange);
+    color: var(--white);
     border: none;
-    background-color: #F38F00;
-    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 1px var(--black);
 }
 
-main{
+.header-form div input[type="submit"]:hover {
+    background-color: var(--hoverOrange);
+}
+
+/* Main */
+
+main {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 96.5vw;
-    height: 60vh;
-    border: #F38F00 solid 1px;
-    padding: 15px;
-    border-radius: 15px;
-}
-
-table{
-    width: 80vw;
-    height: auto;
-}
-
-thead{ 
-    justify-content: space-between;
-    align-items: center;
-    width: 0vw;
-    height: 0vh;
-    border: #F38F00 solid 1px;
-    align-items: center;
-    font-size: 1.3em;
-}
-
-tbody{
-    width: 50vw;
-    height: 30vh;
-    border: #F38F00 solid 1px;
-    align-items: center;
-    font-size: 1rem;
-    text-align: center;
-}
-
-footer{
-    width: 96.5vw;
-    height: 10vh;
-    border: #F38F00 solid 1px;
-    padding: 15px;
-    border-radius: 15px;
-}
-
-button{
-    width: 2.5vw;
-    height: 4.5vh;
-    border-radius: 15px;
-    border: none;
-    background-color: #F38F00;
-    color: white;
-}
-
-.rodape{
-    height: 9vh;
-    width: 95vw;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    width: 40vw;
-    height: 5vh;
-    border: #F38F00 solid 1px;
-}
-
-.box2{
-    display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 20vw;
-    height: 5vh;
-    font-size: 1.5em;
-    border: #F38F00 solid 1px;
+    gap: 20px;
+
+    width: 100vw;
+    height: 70%;
+    margin-block: 15px;
+}
+
+main .container {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    height: fit-content;
+    max-height: 100%;
+
+    /* border-collapse: collapse; */
     
-    border-radius: 15px;
-    color: #F38F00;
+    font-family: var(--CourierNew);
+
+    text-align: center;
+
+    border: 1px solid var(--orange);
+    border-radius: 8px;
+    box-shadow: 0 0 1px var(--black);
+
+    font-weight: bold;
+    font-size: 1.2rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    table-layout: fixed;
+    word-wrap: break-word;
+    padding: 10px;
 }
 
-.sistema{
-
+tbody tr {
+    height: 50px;
 }
 
-tr:nth-child(even) {
-    background: #ddcf0f49
-}
-tr:nth-child(odd) {
-    background: #FFF
+table tbody tr:nth-child(odd) {
+    background-color: var(--table-odd);
+    color: var(--black);
 }
 
+main table thead {
+    background-color: var(--orange);
+    color: var(--white);
+}
 
+main table thead th:nth-child(1) {
+    width: 5%;
+}
 
+tr button {
+    border: 1px solid var(--orange);
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 5px;
+    cursor: pointer;
+}
 
+tr button:hover {
+    background-color: var(--hoverOrange);
+}
 
+footer {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    /* height: 5%; */
+    height: fit-content;
+}
+
+footer label {
+    font-size: 1.2rem;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+
+.stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats div:nth-child(1) {
+    width: 30%;
+}
+
+.stats div:nth-child(1) input {
+    width: 100%;
+    border-radius: 0;
+}
+
+.stats input {
+    height: 30px;
+
+    cursor: default;
+}

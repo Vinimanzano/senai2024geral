@@ -1,47 +1,24 @@
-//Variáveis e constantes(objetos) globais
-const criar = document.getElementById('criar');
-const dados = document.getElementById('dados');
-const uri = "http://localhost:3000/item";
-let item = [];
+const form = document.querySelector('form');
+const uri = 'http://localhost:3000/items';
+const dados = [];
+const sysmsg = document.querySelector('#sysmsg');
 
-//Obter dados do back-end
-function loaditem() {
-    fetch(uri)
-        .then(res => res.json())
-        .then(res => {
-            item = res;
-            preencherTabela();
-        });
-}
+const tbody = document.querySelector('tbody');
 
-//CRUD - Read - Renderizar os dados obtidos em uma tabela
-function preencherTabela() {
-    dados.innerHTML = "";
-    item.forEach(cli => {
-        dados.innerHTML += `
-                <tr>
-                    <td>${cli.id}</td>
-                    <td>${cli.nome}</td>
-                    <td>${cli.descricao}</td>
-                    <td>${cli.valor}</td>
-                <td>
-                        <button onclick="del(${cli.id})"> - </button>
-                        <button onclick="edit(this)"> * </button>
-                </td>
-                </tr>
-            `;
-    });
-}
+// var idBackup = null;
 
-//CRUD - Create
-criar.addEventListener('submit', e => {
-    e.preventDefault();
+// CRUD - CREATE
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
     const data = {
-        id: criar.id.value,
-        nome: criar.nome.value,
-        descricao: criar.descricao.value,
-        valor: criar.valor.value
-    };
+        id: document.querySelector('#id').value,
+        nome: document.querySelector('#nome').value,
+        descricao: document.querySelector('#desc').value,
+        valor: document.querySelector('#valor').value
+    }
+
     fetch(uri, {
         method: 'POST',
         headers: {
@@ -49,70 +26,178 @@ criar.addEventListener('submit', e => {
         },
         body: JSON.stringify(data)
     })
-        .then(res => res.json())
-        .then(res => {
-            if (res.sqlMessage == undefined) {
-                item.push(res);
-                dados.innerHTML = "";
-                preencherTabela();
-            }
-        });
+    .then (response => response.json())
+    .then(data => {
+        if(data.error) {
+            sysmsg.classList.add('error');
+            sysmsg.innerText = data.error;
+            return
+        } else {
+            sysmsg.classList.remove('error');
+            sysmsg.innerText = data.success;
+            dados.push(data);
+            render();
+            form.reset();
+        }
+    });
+
+    window.location.reload();
 });
 
-//CRUD - Update
+// CRUD - READ
+
+function load() {
+    fetch(uri)
+    .then(response => response.json())
+    .then(data => {
+        dados.push(...data);
+        render();
+    })
+}
+
+function render() {
+    tbody.innerHTML = '';
+    sysmsg.innerText = '';
+
+    if(dados.length === 0) {
+        let tr = document.createElement('tr');
+        tr.innerHTML = '<td colspan="5">Nenhum registro encontrado</td>';
+        tbody.appendChild(tr);
+        sysmsg.classList.add('error');
+        sysmsg.value = 'ERROR: 404 - Nenhum registro encontrado';
+        return
+    }
+
+    dados.forEach(item => {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.nome}</td>
+            <td>${item.descricao}</td>
+            <td>${item.valor}</td>
+            <td>
+                <button onclick="edit(this)">*</button>
+                <button onclick="del(${item.id})">X</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// CRUD - UPDATE
+
+function edit(btn) {
+    const nome = btn.parentNode.parentNode.children[1];
+    const descricao = btn.parentNode.parentNode.children[2];
+    const valor = btn.parentNode.parentNode.children[3];
+    const buttonVer = btn;
+    const btnCancel = buttonVer.nextElementSibling;
+
+    // idBackup = id.innerText;
+
+    buttonVer.innerHTML = 'confirm';
+    buttonVer.setAttribute('onclick', 'update(this)');
+    btnCancel.innerHTML = 'cancel';
+    btnCancel.setAttribute('onclick', 'cancel(this)');
+
+    nome.setAttribute('contenteditable', 'true');
+    nome.style = 'background-color: #f0f0f0; 1px solid #ccc;';
+    descricao.setAttribute('contenteditable', 'true');
+    descricao.style = 'background-color: #f0f0f0; border: 1px solid #ccc;';
+    valor.setAttribute('contenteditable', 'true');
+    valor.style = 'background-color: #f0f0f0; border: 1px solid #ccc;';
+}
+
 function update(btn) {
-    let linha = btn.parentNode.parentNode;
-    let celulas = linha.cells;
-    let id = celulas[0].innerHTML;
-    let data = {
-        nome: celulas[1].innerHTML,
-        descricao: celulas[2].innerHTML,
-        valor: celulas[3].innerHTML,
-    };
-    fetch(uri + '/' + id, {
+    const id = btn.parentNode.parentNode.children[0];
+    const nome = btn.parentNode.parentNode.children[1];
+    const descricao = btn.parentNode.parentNode.children[2];
+    const valor = btn.parentNode.parentNode.children[3];
+    const buttonVer = btn;
+    const buttonCancel = buttonVer.nextElementSibling;
+
+    buttonVer.innerHTML = '*';
+    buttonVer.setAttribute('onclick', 'edit(this)');
+    buttonCancel.innerHTML = 'X';
+    buttonCancel.setAttribute('onclick', 'cancel(this)');
+
+    // id.setAttribute('contenteditable', 'false');
+    // id.style = 'background-color: transparent; border: none;';
+    nome.setAttribute('contenteditable', 'false');
+    nome.style = 'background-color: transparent; border: none;';
+    descricao.setAttribute('contenteditable', 'false');
+    descricao.style = 'background-color: transparent; border: none;';
+    valor.setAttribute('contenteditable', 'false');
+    valor.style = 'background-color: transparent; border: none;';
+
+    const data = {
+        id: id.innerText,
+        nome: nome.innerText,
+        descricao: descricao.innerText,
+        valor: valor.innerText
+    }
+
+    fetch(`${uri}/${data.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     })
-        .then(res => res.json())
-        .then(res => {
-            if (res.sqlMessage == undefined) {
-                celulas[1].removeAttribute('contenteditable');
-                celulas[2].removeAttribute('contenteditable');
-                celulas[3].removeAttribute('contenteditable');
-                btn.innerHTML = '*';
-                btn.setAttribute('onclick', 'edit(this)');
-            } else {
-                mensagens(res.sqlMessage, 'Erro ao atualizar cliente!');
-            }
-        });
+    .then(response => response.json())
+    .then(data => {
+        if(data.error) {
+            sysmsg.classList.add('error');
+            sysmsg.innerText = data.error;
+            return
+        } else {
+            sysmsg.classList.remove('error');
+            sysmsg.innerText = data.success;
+        }
+
+        window.location.reload();
+    });
+
+    
 }
 
-//CRUD - Delete
+function cancel(btn) {
+    // const id = btn.parentNode.parentNode.children[0];
+    const nome = btn.parentNode.parentNode.children[1];
+    const descricao = btn.parentNode.parentNode.children[2];
+    const valor = btn.parentNode.parentNode.children[3];
+    const buttonCancel = btn;
+    const buttonVer = buttonCancel.previousElementSibling;
+
+    buttonVer.innerHTML = '*';
+    buttonVer.setAttribute('onclick', 'edit(this)');
+    buttonCancel.innerHTML = 'X';
+    buttonCancel.setAttribute('onclick', `del(${id.innerText})`);
+
+    // id.setAttribute('contenteditable', 'false');
+    // id.style = 'background-color: transparent; border: none;';
+    nome.setAttribute('contenteditable', 'false');
+    nome.style = 'background-color: transparent; border: none;';
+    descricao.setAttribute('contenteditable', 'false');
+    descricao.style = 'background-color: transparent; border: none;';
+    valor.setAttribute('contenteditable', 'false');
+    valor.style = 'background-color: transparent; border: none;';
+}
+
+// CRUD - DELETE
 function del(id) {
-    mensagens('Deseja realmente excluir o cliente id = ' + id + '?', 'Excluir cliente', id);
+    let item = dados.find(item => item.id == id);
+
+    if(confirm(`Deseja excluir o item ${item.nome}?`))
+        delData(id);
 }
 
-//Confirma exclusão
-function confirmar(id) {
-    fetch(uri + '/' + id, {
+function delData(id) {
+    fetch(`${uri}/${id}`, {
         method: 'DELETE'
     })
-        .then(res => res.json())
-        .then(res => {
-            window.location.reload();
-        });
+    // .then(res => res.json())
+    .then(res => {
+        window.location.reload();
+    });
 }
-
-//Tornar as células da linha tabela editáveis
-// function edit(btn) {
-//     let linha = btn.parentNode.parentNode;
-//     let celulas = linha.cells;
-//     for (let i = 1; i < celulas.length - 2; i++) {
-//         celulas[i].setAttribute('contenteditable', 'true');
-//     }
-//     btn.innerHTML = '✔';
-//     btn.setAttribute('onclick', 'update(this)');
-// }

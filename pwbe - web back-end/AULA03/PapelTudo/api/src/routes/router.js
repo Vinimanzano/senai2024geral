@@ -1,19 +1,17 @@
-//Dependências - Frameworks
-const express = require("express");
-const router = express.Router();
+const express = require('express');
+const routes = express.Router();
 
-const item = require("../controller/item");
+const item = require('../controller/item');
 
-//Rota de teste
-const teste = (req, res) => {
-    res.json("Back-end, API Loja respondendo!");
+const test = (req, res) => {
+    res.send('Backend: Respondendo! 👍');
 }
 
-//Rotas de Saída - Clientes
-router.get("/", teste);
-router.post("/item", item.create);
-router.get("/item", item.read);
-router.put("/item/:id", item.update);
-router.delete("/item/:id", item.del);
+//Rotas de Saída
+routes.get('/', test);
+routes.post('/items', item.create);
+routes.get('/items', item.read);
+routes.put('/items/:id', item.update);
+routes.delete('/items/:id', item.del);
 
-module.exports = router;
+module.exports = routes;

@@ -1,66 +1,63 @@
-//Dependências - Frameworks
-const con = require("../connect/connect").con;
+const con = require('../connect/connect').con;
 
-//CRUD - create
 const create = (req, res) => {
-    let nome = req.body.nome;
-    let descricao = req.body.descricao;
-    let valor = req.body.valor;
-    let query = `INSERT INTO item(nome, descricao, valor) VALUE`;
-    query += `('${nome}', '${descricao}', '${valor}');`;
+    const { id, nome, descricao, valor } = req.body;
+
+    let query = `INSERT INTO item(id, nome, descricao, valor) VALUE ('${id}', '${nome}', '${descricao}', '${valor}')`;
     con.query(query, (err, result) => {
-        if (err)
+        if (err) {
             res.status(400).json(err).end();
-        else {
-            const novo = req.body;
-            novo.id = result.insertId;
+        } else {
+            const novo = {
+                id: result.insertId,
+                nome,
+                descricao,
+                valor
+            }
             res.status(201).json(novo).end();
         }
-    });
+    })
 }
 
-//CRUD - Read
 const read = (req, res) => {
-    con.query("SELECT * FROM item", (err, result) => {
-        if (err)
-            res.json(err);
-        else
-            res.json(result);
-    });
-}
-
-//CRUD - Update
-const update = (req, res) => {
-    let id = req.params.id;
-    let nome = req.body.nome;
-    let descricao = req.body.descricao;
-    let  = req.body.valor;
-    let query = `UPDATE item SET nome = '${nome}', descricao = '${descricao}', valor = '${valor}' WHERE id = ${id}`;
-    con.query(query, (err, result) => {
-        if (err)
-            res.status(400).json(err).end;
-        else {
-            if (result.affectedRows > 0)
-                res.status(202).json(req.body).end();
-            else
-                res.status(404).json("Registro não encontrado").end();
-        }
-    });
-}
-
-//CRUD - Delete
-const del = (req, res) => {
-    let id = req.params.id;
-    con.query(`DELETE FROM item WHERE id = ${id}`, (err, result) => {
-        if (err)
+    con.query('SELECT * FROM item', (err, result) => {
+        if (err) {
             res.status(400).json(err).end();
-        else {
-            if (result.affectedRows > 0)
-                res.status(204).json(result).end();
-            else
-                res.status(404).json("Registro não encontrado").end();
+        } else {
+            res.status(200).json(result).end();
         }
-    });
+    })
+}
+
+const update = (req, res) => {
+    const { id } = req.params;
+    const { nome, descricao, valor } = req.body;
+
+    let query = `UPDATE item SET nome = '${nome}', descricao = '${descricao}', valor = '${valor}' WHERE id = '${id}'`;
+    con.query(query, (err, result) => {
+        if (err) {
+            res.status(400).json(err).end();
+        } else if(result.affectedRows > 0) {
+            res.status(202).json(req.body).end();
+        } else {
+            res.status(404).json({message: 'Item não encontrado'}).end();
+        }
+    })
+}
+
+const del = (req, res) => {
+    const { id } = req.params;
+
+    let query = `DELETE FROM item WHERE id = '${id}'`;
+    con.query(query, (err, result) => {
+        if (err) {
+            res.status(400).json(err).end();
+        } else if(result.affectedRows > 0) {
+            res.status(204).end();
+        } else {
+            res.status(404).json({message: 'Item não encontrado'}).end();
+        }
+    })
 }
 
 module.exports = {
@@ -68,4 +65,4 @@ module.exports = {
     read,
     update,
     del
-};
+}
