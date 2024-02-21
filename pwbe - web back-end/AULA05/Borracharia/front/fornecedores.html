@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="imagex/png" href="./assets/pngwing.com.png">
+    <title>Fornecedores</title>
+</head>
+<body onload="fornecedores()">
+    <div class="botao-fornecedor">
+        <button onclick="window.location.href='index.html'">Home</button>
+        <button onclick="window.location.href='clientes.html'">Clientes</button>
+        <button onclick="window.location.href='produtos.html'">Produtos</button>
+    </div>
+
+    <header>
+        <div class="container">
+            <p style="font-size: 1.5rem;"><b>Fornecedores</b></p>
+                <form class="header-form">
+                    <div>
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" id="id">
+                    </div>
+                    
+                    <div>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div>
+                        <label for="nome">Descrição:</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div>
+                        <label for="nome">Valor:</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div>
+                        <label for="act">Ação:</label>
+                        <input type="submit" value="Cadastrar" name="act" id="act">
+                    </div>
+                </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="justify-content: flex-start;">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <!-- <tr>
+                            <td>001</td>
+                            <td>Bosch</td>
+                            <td>Oleo para motor</td>
+                            <td>R$ 500,00</td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Denso Corporation</td>
+                            <td>Pneu</td>
+                            <td>R$ 90,00</td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Michelin</td>
+                            <td>Oleo para motor</td>
+                            <td>R$ 500,00</td>
+                        </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>

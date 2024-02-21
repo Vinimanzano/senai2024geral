@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="imagex/png" href="./assets/pngwing.com.png">
+    <title>Clientes</title>
+</head>
+<body onload="clientes()">
+    <div class="botao-fornecedor">
+        <button onclick="window.location.href='index.html'">Home</button>
+        <button onclick="window.location.href='fornecedores.html'">Fornecedores</button>
+        <button onclick="window.location.href='produtos.html'">Produtos</button>
+    </div>
+    
+    <header>
+        <div class="container">
+            <p style="font-size: 1.5rem;"><b>Clientes</b></p>
+                <form class="header-form">
+                    <div>
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" id="id">
+                    </div>
+                    
+                    <div>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div>
+                        <label for="act">Ação:</label>
+                        <input type="submit" value="Cadastrar" name="act" id="act">
+                    </div>
+                </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="justify-content: flex-start;">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <!-- <tr>
+                            <td>001</td>
+                            <td>Igor</td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Whindersson</td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Wellington</td>
+                        </tr>
+                        <tr>
+                            <td>004</td>
+                            <td>Carlos</td>
+                        </tr>
+                        <tr>
+                            <td>005</td>
+                            <td>Lucas</td>
+                        </tr>
+                        <tr>
+                            <td>006</td>
+                            <td>Vinícius</td>
+                        </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>
