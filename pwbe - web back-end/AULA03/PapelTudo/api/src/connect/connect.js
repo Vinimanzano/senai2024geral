@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 
 const con = mysql.createConnection({
-    host: 'localhost',
     user: 'root',
+    host: 'localhost',
     database: 'inventario'
 });
 
-module.exports = { con }
+module.exports = {con};

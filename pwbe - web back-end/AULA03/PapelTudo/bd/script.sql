@@ -1,15 +1,15 @@
+-- SQL do banco de dados de Inventários com apenas uma tabela
 DROP DATABASE IF EXISTS inventario;
 CREATE DATABASE inventario CHARSET=UTF8 COLLATE utf8_general_ci;
 USE inventario;
-
+-- DDL Criação da estrutura da tabela
 CREATE TABLE item(
     id varchar(5) not null primary key,
-    -- id integer auto_increment primary key,
     nome varchar(50) not null,
     descricao text,
     valor decimal(10,2) not null
 );
-
+-- DML Popular a tabela com dados de teste
 INSERT INTO item VALUES
 ('i001','Mesa','Mesa de escritório',100.00),
 ('i002','Computador','Desktop DEL i5, 8GB RAM, SSD 500GB',2200.00),

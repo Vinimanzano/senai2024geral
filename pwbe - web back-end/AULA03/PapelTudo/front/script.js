@@ -1,22 +1,19 @@
-const form = document.querySelector('form');
-const uri = 'http://localhost:3000/items';
-const dados = [];
-const sysmsg = document.querySelector('#sysmsg');
-
-const tbody = document.querySelector('tbody');
-
-// var idBackup = null;
+const valor = document.getElementById('valor');
+const sysMsg = document.getElementById('msg');
+const tbody = document.getElementById('data-table');
+const form = document.getElementById('form');
+const uri = 'http://localhost:3000/itens';
+const itens = [];
+var oldData = {};
 
 // CRUD - CREATE
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
+function create() {
+            
     const data = {
-        id: document.querySelector('#id').value,
-        nome: document.querySelector('#nome').value,
-        descricao: document.querySelector('#desc').value,
-        valor: document.querySelector('#valor').value
+        id: form.id.value,
+        nome: form.nome.value,
+        descricao: form.descricao.value,
+        valor: form.valor.value
     }
 
     fetch(uri, {
@@ -26,177 +23,188 @@ form.addEventListener('submit', (event) => {
         },
         body: JSON.stringify(data)
     })
-    .then (response => response.json())
-    .then(data => {
-        if(data.error) {
-            sysmsg.classList.add('error');
-            sysmsg.innerText = data.error;
-            return
+    .then(res => res.json())
+    .then(res => {
+        if(!res) {
+            sysMsg.classList.add('error');
+            sysMsg.value = '⚠ Erro ao cadastrar o item!';
+
+            setTimeout(() => {
+                sysMsg.classList.remove('error')
+                sysMsg.value = '';
+            }, 4000)
         } else {
-            sysmsg.classList.remove('error');
-            sysmsg.innerText = data.success;
-            dados.push(data);
-            render();
+            sysMsg.value = 'Item cadastrado!';
+
+            setTimeout(() => {
+                sysMsg.value = '';
+            }, 4000)
+
+            itens.push(res);
+            renderData();
             form.reset();
         }
     });
+}
 
-    window.location.reload();
-});
 
 // CRUD - READ
-
-function load() {
+// Carregar Dados do Banco
+function loadItem() {
     fetch(uri)
-    .then(response => response.json())
-    .then(data => {
-        dados.push(...data);
-        render();
+        .then(res => res.json())
+        .then(res => {
+            itens.push(...res);
+            renderData();
+        })
+}
+
+// Preencher Tabela com os Dados
+function renderData() {
+    itens.forEach( item => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.nome}</td>
+                <td>${item.descricao}</td>
+                <td>${item.valor.toFixed(2)}</td>
+                <td>
+                    <button class="edit" id="btn-1" onclick="edit(this)"><i class="bi bi-pen-fill"></i></button>
+                    <button id="btn-2" onclick="del('${item.id}')"><i class="bi bi-trash-fill"></i></button>
+                </td>
+            </tr>
+        `
     })
 }
 
-function render() {
-    tbody.innerHTML = '';
-    sysmsg.innerText = '';
-
-    if(dados.length === 0) {
-        let tr = document.createElement('tr');
-        tr.innerHTML = '<td colspan="5">Nenhum registro encontrado</td>';
-        tbody.appendChild(tr);
-        sysmsg.classList.add('error');
-        sysmsg.value = 'ERROR: 404 - Nenhum registro encontrado';
-        return
-    }
-
-    dados.forEach(item => {
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${item.id}</td>
-            <td>${item.nome}</td>
-            <td>${item.descricao}</td>
-            <td>${item.valor}</td>
-            <td>
-                <button onclick="edit(this)">*</button>
-                <button onclick="del(${item.id})">X</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
-}
 
 // CRUD - UPDATE
-
 function edit(btn) {
-    const nome = btn.parentNode.parentNode.children[1];
-    const descricao = btn.parentNode.parentNode.children[2];
-    const valor = btn.parentNode.parentNode.children[3];
-    const buttonVer = btn;
-    const btnCancel = buttonVer.nextElementSibling;
 
-    // idBackup = id.innerText;
+    let data = {
+        id: btn.parentNode.parentNode.children[0],
+        nome: btn.parentNode.parentNode.children[1],
+        descricao: btn.parentNode.parentNode.children[2],
+        valor: btn.parentNode.parentNode.children[3]
+    }
 
-    buttonVer.innerHTML = 'confirm';
-    buttonVer.setAttribute('onclick', 'update(this)');
-    btnCancel.innerHTML = 'cancel';
-    btnCancel.setAttribute('onclick', 'cancel(this)');
+    oldData = {
+        oldId: data.id.innerHTML,
+        oldNome: data.nome.innerHTML,
+        oldDesc: data.descricao.innerHTML,
+        oldValor: data.valor.innerHTML
+    }
 
-    nome.setAttribute('contenteditable', 'true');
-    nome.style = 'background-color: #f0f0f0; 1px solid #ccc;';
-    descricao.setAttribute('contenteditable', 'true');
-    descricao.style = 'background-color: #f0f0f0; border: 1px solid #ccc;';
-    valor.setAttribute('contenteditable', 'true');
-    valor.style = 'background-color: #f0f0f0; border: 1px solid #ccc;';
+    data.nome.setAttribute('contenteditable', 'true')
+    data.nome.style.border = '2px solid var(--red)'
+    data.descricao.setAttribute('contenteditable', 'true')
+    data.descricao.style.border = '2px solid var(--red)'
+    data.valor.setAttribute('contenteditable', 'true')
+    data.valor.style.border = '2px solid var(--red)'
+
+    btn.innerHTML = '<i class="bi bi-check-square-fill"></i>'
+    btn.setAttribute('onclick', 'update(this)')
+    btn.nextElementSibling.innerHTML = '<i class="bi bi-x-square-fill"></i>'
+    btn.nextElementSibling.setAttribute('onclick', 'cancel(this)')
+
 }
 
 function update(btn) {
-    const id = btn.parentNode.parentNode.children[0];
-    const nome = btn.parentNode.parentNode.children[1];
-    const descricao = btn.parentNode.parentNode.children[2];
-    const valor = btn.parentNode.parentNode.children[3];
-    const buttonVer = btn;
-    const buttonCancel = buttonVer.nextElementSibling;
-
-    buttonVer.innerHTML = '*';
-    buttonVer.setAttribute('onclick', 'edit(this)');
-    buttonCancel.innerHTML = 'X';
-    buttonCancel.setAttribute('onclick', 'cancel(this)');
-
-    // id.setAttribute('contenteditable', 'false');
-    // id.style = 'background-color: transparent; border: none;';
-    nome.setAttribute('contenteditable', 'false');
-    nome.style = 'background-color: transparent; border: none;';
-    descricao.setAttribute('contenteditable', 'false');
-    descricao.style = 'background-color: transparent; border: none;';
-    valor.setAttribute('contenteditable', 'false');
-    valor.style = 'background-color: transparent; border: none;';
-
-    const data = {
-        id: id.innerText,
-        nome: nome.innerText,
-        descricao: descricao.innerText,
-        valor: valor.innerText
+    
+    let elementData = {
+        id: btn.parentNode.parentNode.children[0],
+        nome: btn.parentNode.parentNode.children[1],
+        descricao: btn.parentNode.parentNode.children[2],
+        valor: btn.parentNode.parentNode.children[3]
     }
 
-    fetch(`${uri}/${data.id}`, {
+    let valueData = {
+        id: elementData.id.innerHTML,
+        nome: elementData.nome.innerHTML,
+        descricao: elementData.descricao.innerHTML,
+        valor: elementData.valor.innerHTML
+    }
+
+    fetch(`${uri}/${valueData.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(valueData)
     })
-    .then(response => response.json())
-    .then(data => {
-        if(data.error) {
-            sysmsg.classList.add('error');
-            sysmsg.innerText = data.error;
-            return
+    .then(res => res.json())
+    .then(res => {
+        if(!res) {
+            sysMsg.classList.add('error')
+            sysMsg.value = '⚠ Erro ao atualizar item!'
+
+            setTimeout(() => {
+                sysMsg.classList.remove('error')
+                sysMsg.value = ''
+            }, 4000)
         } else {
-            sysmsg.classList.remove('error');
-            sysmsg.innerText = data.success;
+            sysMsg.value = 'Item atualizado com sucesso!'
+
+            setTimeout(() => {
+                sysMsg.value = ''
+            }, 4000)
+
+            elementData.nome.setAttribute('contenteditable', 'false')
+            elementData.nome.style.border = 'none'
+            elementData.descricao.setAttribute('contenteditable', 'false')
+            elementData.descricao.style.border = 'none'
+            elementData.valor.setAttribute('contenteditable', 'false')
+            elementData.valor.style.border = 'none'
+
+            btn.innerHTML = '<i class="bi bi-pen-fill"></i>'
+            btn.setAttribute('onclick', 'edit(this)')
+            btn.nextElementSibling.innerHTML = '<i class="bi bi-trash-fill"></i>'
+            btn.nextElementSibling.setAttribute('onclick', `del('${item.id}')`)
         }
-
-        window.location.reload();
     });
-
-    
 }
 
 function cancel(btn) {
-    // const id = btn.parentNode.parentNode.children[0];
-    const nome = btn.parentNode.parentNode.children[1];
-    const descricao = btn.parentNode.parentNode.children[2];
-    const valor = btn.parentNode.parentNode.children[3];
-    const buttonCancel = btn;
-    const buttonVer = buttonCancel.previousElementSibling;
 
-    buttonVer.innerHTML = '*';
-    buttonVer.setAttribute('onclick', 'edit(this)');
-    buttonCancel.innerHTML = 'X';
-    buttonCancel.setAttribute('onclick', `del(${id.innerText})`);
+    let elementData = {
+        id: btn.parentNode.parentNode.children[0],
+        nome: btn.parentNode.parentNode.children[1],
+        descricao: btn.parentNode.parentNode.children[2],
+        valor: btn.parentNode.parentNode.children[3]
+    }
 
-    // id.setAttribute('contenteditable', 'false');
-    // id.style = 'background-color: transparent; border: none;';
-    nome.setAttribute('contenteditable', 'false');
-    nome.style = 'background-color: transparent; border: none;';
-    descricao.setAttribute('contenteditable', 'false');
-    descricao.style = 'background-color: transparent; border: none;';
-    valor.setAttribute('contenteditable', 'false');
-    valor.style = 'background-color: transparent; border: none;';
+    elementData.id.innerHTML = oldData.oldId
+    elementData.nome.innerHTML = oldData.oldNome
+    elementData.descricao.innerHTML = oldData.oldDesc
+    elementData.valor.innerHTML = oldData.oldValor
+
+    elementData.nome.setAttribute('contenteditable', 'false')
+    elementData.nome.style.border = 'none'
+    elementData.descricao.setAttribute('contenteditable', 'false')
+    elementData.descricao.style.border = 'none'
+    elementData.valor.setAttribute('contenteditable', 'false')
+    elementData.valor.style.border = 'none'
+
+    btn.innerHTML = '<i class="bi bi-trash-fill"></i>'
+    btn.setAttribute('onclick', `del('${elementData.id.innerHTML}')`)
+    btn.previousElementSibling.innerHTML = '<i class="bi bi-pen-fill"></i>'
+    btn.previousElementSibling.setAttribute('onclick', 'edit(this)')
 }
+
+
 
 // CRUD - DELETE
 function del(id) {
-    let item = dados.find(item => item.id == id);
-
-    if(confirm(`Deseja excluir o item ${item.nome}?`))
-        delData(id);
+    if(confirm("Deseja realmente excluir este produto ?")) {
+        delData(id)
+    }
 }
 
 function delData(id) {
     fetch(`${uri}/${id}`, {
-        method: 'DELETE'
+        method: "DELETE"
     })
-    // .then(res => res.json())
+    .then(res => res.json())
     .then(res => {
         window.location.reload();
     });
