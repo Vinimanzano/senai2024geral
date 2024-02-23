@@ -27,7 +27,7 @@ export default function App() {
             ? "https://w7.pngwing.com/pngs/271/591/png-transparent-punch-fist-graphy-fist-love-white-face.png"
             : "https://w7.pngwing.com/pngs/338/222/png-transparent-raised-fist-punch-punch-food-face-hand.png"
         }}
-        style={styles.goku}
+        style={styles.Soco}
       />
 
       {/* {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: '350px',
     height: '350px'
   },
-  goku: {
+  Soco: {
     width: '350px',
     height: '330px'
   }
