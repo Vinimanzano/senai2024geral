@@ -8,8 +8,9 @@ var oldData = {};
 var valorTotal = 0;
 
 // CRUD - CREATE
-function create() {
-            
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
     const data = {
         id: form.id.value,
         nome: form.nome.value,
@@ -26,34 +27,29 @@ function create() {
     })
     .then(res => res.json())
     .then(res => {
-        if(res.error) {
-            sysMsg.classList.add('error');
-            sysMsg.value = res.error;
-
-            setTimeout(() => {
-                sysMsg.classList.remove('error')
-                sysMsg.value = '';
-            }, 4000)
+        if(res.status == 400 || res.status == 404) {
+            sysMsg.classList.add('error')
+            sysMsg.value = res.error
         } else {
-            sysMsg.value = 'Item cadastrado!';
+            sysMsg.value = res.success
+
+            itens.push(data)
+            form.reset()
+            loadItem()
 
             setTimeout(() => {
-                sysMsg.value = '';
+                sysMsg.value = ''
             }, 4000)
-
-            itens.push(res);
-            loadItem();
-            form.reset();
         }
-    });
-}
+    })
+})
 
 
 // CRUD - READ
 // Carregar Dados do Banco
 function loadItem() {
-    itens = [];
     tbody.innerHTML = '';
+    itens = [];
     valorTotal = 0;
     fetch(uri)
         .then(res => res.json())
@@ -199,7 +195,6 @@ function cancel(btn) {
 }
 
 
-
 // CRUD - DELETE
 function del(id) {
     if(confirm("Deseja realmente excluir este produto ?")) {
@@ -213,6 +208,22 @@ function delData(id) {
     })
     .then(res => res.json())
     .then(res => {
-        window.location.reload();
+        if(res.status == 400 || res.status == 404) {
+            sysMsg.classList.add('error');
+            sysMsg.value = res.error;
+
+            setTimeout(() => {
+                sysMsg.classList.remove('error');
+                sysMsg.value = '';
+            }, 4000)
+
+        } else {
+            sysMsg.value = res.success;
+            loadItem();
+
+            setTimeout(() => {
+                sysMsg.value = '';
+            }, 4000)
+        }
     });
 }
