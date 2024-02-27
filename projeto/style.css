@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --black: black;
+    --white: white;
+    --cinzaescuro: rgb(30, 30, 30);
+    --dark-gray: rgb(95, 95, 95);
+    --gray: gray;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+}
+
+header{
+    height: 100vh;
+    width: 3vw;
+    background-color: rgb(30, 30, 30);
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 0 12px 0;
+}
+
+header img{
+    width: 35px;
+    height: 35px;
+}
+
+header img:hover{
+    cursor: pointer;
+}
+
+header ul{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+header ul li:hover{
+    scale: 1.2;
+    color: white;
+}
+
+header ul li{
+    transition: 2s; 
+}
+
+header ul li{
+    display: flex;
+    height: 5vh;
+    width: 30%;
+    flex-direction: column;
+    font-size: 1.8rem;
+    text-align: center;
+    justify-content: center;
+    list-style: none;
+    color: rgb(95, 95, 95);
+    gap: 40px;
+    cursor: pointer;
+}
+
+.refresh{
+    transition: 2s;
+}
+
+a{
+    color:currentColor;
+}
+
+.refresh:hover{
+    opacity: 0.7;
+    color: white;
+}
+
+main{
+    height: 95vh;
+    width: 96.5vw;
+}
+
+.home{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--white);
+    font-size: 1.3rem;
+}
+
+footer{
+    font-family: "Jost", sans-serif;
+    height: 5vh;
+    width: 97vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    background-color: rgb(40, 40, 40);
+    color: white;
+    transition: 1s;
+}
+
+
+footer:hover{
+    opacity: 1;
+    color: grey;
+}
