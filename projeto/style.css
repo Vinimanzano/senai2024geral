@@ -10,11 +10,9 @@
     --black: black;
     --white: white;
     --cinzaescuro: rgb(30, 30, 30);
-<<<<<<< HEAD
     --dark-gray: rgb(95, 95, 95);
     --gray: gray;
     --pink: pink;
-=======
     --gray: rgb(95, 95, 95);
     --dark-gray: gray;
 }
@@ -32,8 +30,7 @@
 }
   
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
+    background: #555;
 }
 
 body{
@@ -112,20 +109,16 @@ main{
 }
 
 .home-section{
-<<<<<<< HEAD
     display: flex;
     height: 94%;
     width: 100%;
-=======
     width: 99.7vw;
     height: 100vh;
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: var(--white);
-<<<<<<< HEAD
     font-size: 2rem;
     border: solid 3px var(--pink);
 }
@@ -147,7 +140,6 @@ footer{
     height: 5vh;
     width: 97vw;
     justify-content: center;
-=======
     font-size: 1.3rem;
     border: solid 1px white;
 }
@@ -167,7 +159,6 @@ footer{
 .about{
     display: flex;
     flex-direction: column;
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
     align-items: center;
     width: 99.7vw;
     height: 100vh;
@@ -175,11 +166,9 @@ footer{
     border: solid 1px white;
 }
 
-<<<<<<< HEAD
 footer:hover{
     opacity: 1;
     color: grey;
-=======
 .about P {
     display: flex;
     font-family: "Jost", sans-serif;
@@ -187,9 +176,7 @@ footer:hover{
     align-items: center;
     justify-content: center;
     text-align: center;
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
-}
-
+    
 .skills{
     display: flex;
     flex-direction: column;
