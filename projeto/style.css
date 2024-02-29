@@ -41,7 +41,7 @@ body{
 }
 
 header{
-    height: 52.5vw;
+    height: 48vw;
     width: 6vh;
     background-color: rgb(30, 30, 30);
     flex-direction: column;
@@ -139,22 +139,11 @@ main p{
     text-align:center;
 }
 
-<<<<<<< HEAD
 .home-section > h2{
     font-size: 3.2rem;
     transition: .5s;
     color: rgb(243, 239, 241);
     letter-spacing: 5px;
-=======
-footer{
-    display: flex;
-    font-family: "Jost", sans-serif;
-    height: 5vh;
-    width: 97vw;
-    justify-content: center;
-    font-size: 1.3rem;
-    border: solid 1px white;
->>>>>>> 85981b24d777e6c27fe50faa31897b286c4cdad1
 }
 
 .home-section > h2:hover{
@@ -182,13 +171,8 @@ footer{
 
 .about{
     display: flex;
-<<<<<<< HEAD
     height: 94%;
     width: 100%;
-=======
-    flex-direction: column;
-    align-items: center;
->>>>>>> 85981b24d777e6c27fe50faa31897b286c4cdad1
     width: 99.7vw;
     height: 100vh;
     display: flex;
@@ -200,7 +184,6 @@ footer{
     /* border: solid 3px var(--pink); */
 }
 
-<<<<<<< HEAD
 .about h2{
     font-family: "Jost", sans-serif;
     font-size: 5rem;
@@ -242,33 +225,14 @@ footer{
 }
 
 .skills h2{
-=======
-footer:hover{
-    opacity: 1;
-    color: grey;
-.about P {
->>>>>>> 85981b24d777e6c27fe50faa31897b286c4cdad1
     display: flex;
     font-family: "Jost", sans-serif;
     font-size: 5rem;
     align-items: center;
     justify-content: center;
     text-align: center;
-<<<<<<< HEAD
 }
 
-=======
-    
-.skills{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 99.7vw;
-    height: 100vh;
-    color: var(--white);
-    border: solid 1px white;
-}
->>>>>>> 85981b24d777e6c27fe50faa31897b286c4cdad1
 
 .skills p{
     font-family: "Jost", sans-serif;
@@ -408,11 +372,12 @@ footer:hover{
     width: 30vw;
     flex-direction: column;
     justify-content: center;
-<<<<<<< HEAD
     align-items: center;
     border: solid 1px white;
 }
-=======
-    text-align: center;
+
+.projects div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
->>>>>>> 85981b24d777e6c27fe50faa31897b286c4cdad1
