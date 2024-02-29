@@ -381,3 +381,54 @@ main p{
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.arrow-down {
+    position: absolute;
+    bottom: 7vh;
+    font-size: 5rem;
+    animation: arrow 2s ease-in-out infinite;
+    cursor: pointer;
+    color: #d6f4f4;
+    transition: all 1s;
+    filter:saturate(80%);
+}
+
+.arrow-down:hover {
+    font-variation-settings: "wght" 900, "ital" 1;
+    text-shadow: 0px 10px 0px #d6f4f45e;    
+}
+
+@keyframes arrow {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.projects div a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 250px;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: var(--black);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .4), -1px -1px 5px rgba(0, 0, 0, .4);
+    color: rgb(0, 0, 0);
+}
+
+.projects div a img {
+    width: 200px;
+    height: 200px;
+    transition: .5s;
+}
+
+.projects div a:hover img{
+    transform: scale(1.4);
+}
