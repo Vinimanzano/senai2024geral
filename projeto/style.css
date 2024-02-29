@@ -10,11 +10,9 @@
     --black: black;
     --white: white;
     --cinzaescuro: rgb(30, 30, 30);
-<<<<<<< HEAD
     --dark-gray: rgb(95, 95, 95);
     --gray: gray;
     --pink: pink;
-=======
     --gray: rgb(95, 95, 95);
     --dark-gray: gray;
 }
@@ -32,20 +30,19 @@
 }
   
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
+    background: #555;
 }
 
 body{
     display: flex;
-    height: 99vh;
-    width: 99vw;
+    height: 90vh;
+    width: 90vw;
     background-color: black;
 }
 
 header{
-    height: 100%;
-    width: 100%;
+    height: 52.5vw;
+    width: 6vh;
     background-color: rgb(30, 30, 30);
     flex-direction: column;
     display: flex;
@@ -106,124 +103,275 @@ a{
 
 main{
     height: 95vh;
-    width: 96.5vw;
+    width: 99.5vw;
     color: var(--white);
     font-size: 2.5rem;
+}
+
+main p{
+    display: flex;
+    text-align: end;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--white);
+    font-size: 3rem;
+    /* border: solid 3px var(--pink); */
 }
 
 .home-section{
-<<<<<<< HEAD
     display: flex;
     height: 94%;
     width: 100%;
-=======
     width: 99.7vw;
     height: 100vh;
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: var(--white);
-<<<<<<< HEAD
     font-size: 2rem;
-    border: solid 3px var(--pink);
+    /* border: solid 3px var(--pink); */
 }
 
-.home-section div{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    border: solid 3px var(--pink);
-    font-size: 2.5rem;
-    gap: 20px;
-    padding: 40px;
+.home-section h2{
+    font-size: 5rem;
+    text-align:center;
 }
 
-footer{
-    display: flex;
-    font-family: "Jost", sans-serif;
-    height: 5vh;
-    width: 97vw;
-    justify-content: center;
-=======
-    font-size: 1.3rem;
-    border: solid 1px white;
+.home-section > h2{
+    font-size: 3.2rem;
+    transition: .5s;
+    color: rgb(243, 239, 241);
+    letter-spacing: 5px;
 }
 
-.home-section h1{
-    font-family: "Jost", sans-serif;
-    font-size: 4rem;
+.home-section > h2:hover{
+    color: rgb(53, 49, 58);
+    letter-spacing: 40px;
 }
 
 .home-section p{
-    font-family: "Jost", sans-serif;
     font-size: 1.5rem;
+    line-height: 1.5;
+    transition: .5s;
+    color: var(--pink);
+}
+
+.home-section p:hover{
+    color: var(--gray);
+    letter-spacing: 5px;
+}
+
+.home-section p{
     text-align: center;
-    
+    font-family: "Jost", sans-serif;
+    margin: auto;
 }
 
 .about{
     display: flex;
-    flex-direction: column;
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
-    align-items: center;
+    height: 94%;
+    width: 100%;
     width: 99.7vw;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     color: var(--white);
-    border: solid 1px white;
+    font-size: 2rem;
+    /* border: solid 3px var(--pink); */
 }
 
-<<<<<<< HEAD
-footer:hover{
-    opacity: 1;
-    color: grey;
-=======
-.about P {
+.about h2{
+    font-family: "Jost", sans-serif;
+    font-size: 5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.about > h2{
+    font-size: 3.2rem;
+    transition: .5s;
+    color: rgb(243, 239, 241);
+    letter-spacing: 5px;
+}
+
+.about > h2:hover{
+    color: rgb(53, 49, 58);
+    letter-spacing: 40px;
+}
+.about p{
+    font-size: 1.5rem;
+    line-height: 1.5;
+    transition: .5s;
+    color: var(--pink);
+}
+
+.about p:hover{
+    color: var(--gray);
+}
+
+.skills {
+    width: 99.5vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.skills h2{
     display: flex;
     font-family: "Jost", sans-serif;
     font-size: 5rem;
     align-items: center;
     justify-content: center;
     text-align: center;
->>>>>>> ffedebc8719bf9a2d6fbea56f317a45f949e1b8a
 }
 
-.skills{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 99.7vw;
-    height: 100vh;
-    color: var(--white);
-    border: solid 1px white;
-}
 
 .skills p{
-    display: flex;
     font-family: "Jost", sans-serif;
-    font-size: 5rem;
+    font-size: 1.5rem;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.skills > div {
+    display: flex;
+    column-gap: 50px;
+    align-items: center;
+}
+
+.skills {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+}
+.skills > h2 {
+    font-size: 3.2rem;
+    transition: .5s;
+    color: var(--white);
+    letter-spacing: 5px;
+}
+.skills > h2:hover {
+    color: rgb(53, 49, 58);
+    letter-spacing: 40px;
+}
+.skills > div {
+    display: flex;
+    column-gap: 50px;
+    align-items: center;
+}
+.mySkills {
+   width: 450px;
+   height: 400px;
+   padding: 30px;
+   border-radius: 5px;
+   background-color: rgb(200, 200, 200);
+   box-shadow: 1px 1px 5px rgba(0, 0, 0, .4), -1px -1px 5px rgba(0, 0, 0, .4);
+   color: rgb(0, 0, 0);
+   margin-top: 5%;
+   transition: .5s;
+}
+.mySkills:hover {
+    transform: scale(1.05);
+} 
+.mySkills p {
+   font-size: 1.5rem;
+   font-weight: bold;
+} 
+.mySkills ul {
+   list-style: none;
+}
+.mySkills ul li {
+   margin: 5px 0;
+}
+.mySkills .barras {
+   background-color: rgb(255, 255, 255);
+   display: block;
+   height: 10px;
+   position: relative;
+   border-radius: 5px;
+   overflow: hidden;
+   transition: 0.5s ease-in-out;
+}
+.barras > span {
+   height: 10px;
+   background: rgb(70, 70, 70);
+   position: absolute;
+   border-radius: 5px;
+}
+.html {
+   width: 60%;
+   animation: html 1.3s ease-in-out;
+ }
+.css {
+   width: 50%;
+   animation: css 1.3s ease-in-out;
+}
+.c {
+   width: 30%;
+   animation: c 1.3s ease-in-out;
+}
+.js {
+    width: 20%;
+    animation: js 1.3s ease-in-out;
+}
+.excel {
+   width: 60%;
+   animation: excel 1.3s ease-in-out;
+}
+.power-bi {
+   width: 15%;
+   animation: power-bi 1.3s ease-in-out;
 }
 
 .projects{
-    display: flex;
     flex-direction: column;
     align-items: center;
     width: 99.7vw;
     height: 100vh;
     color: var(--white);
-    border: solid 1px white;
+    /* border: solid 1px white; */
+}
+
+.projects h2{
+    
+    font-family: "Jost", sans-serif;
+    font-size: 5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.projects > h2 {
+    font-size: 3.2rem;
+    transition: .5s;
+    color: var(--white);
+    letter-spacing: 5px;
+}
+.projects > h2:hover {
+    color: rgb(53, 49, 58);
+    letter-spacing: 40px;
 }
 
 .projects p{
     display: flex;
     font-family: "Jost", sans-serif;
-    font-size: 5rem;
-    align-items: center;
+    height: 30vh;
+    width: 30vw;
+    flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    border: solid 1px white;
 }
