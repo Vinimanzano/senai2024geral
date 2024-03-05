@@ -5,7 +5,7 @@ const switchModal = () => {
       modal.style.display = 'none'
     }
     else {
-      modal.style.display = 'block'
+      modal.style.display = 'none'
     }
   }
   
@@ -18,3 +18,19 @@ const switchModal = () => {
       switchModal()
     }
   }
+
+  const bttn = document.querySelector('.btnn')
+  let i=0;
+  bttn.addEventListener('click', () => {
+    const name = document.querySelector('#name').value
+    const email = document.querySelector('#email').value
+    const message = document.querySelector('#message').value
+    alert(`Nome: ${name}\nEmail: ${email}\nMensagem: ${message}`)
+    i++
+  })
+
+  bttn.addEventListener('click', () => {
+    if(i>0){
+      switchModal()
+    }
+  })
