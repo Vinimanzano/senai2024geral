@@ -1,7 +1,7 @@
 const switchModal = () => {
     const modal = document.querySelector('.modal')
     const actualStyle = modal.style.display
-    if(actualStyle == 'block') {
+    if(actualStyle == 'none') {
       modal.style.display = 'none'
     }
     else {

@@ -22,7 +22,8 @@
     --20: rgb(20,20,20);
     --10: rgb(10,10,10);
     --color: rgb(153, 21, 39);
-    --color2: rgb(233, 108, 45);
+    --color2: rgb(224, 90, 23);
+    --color3: rgb(235, 125, 70);
 
     --header-font: "Kode Mono", monospace;
     --base-font: "Merriweather", serif;
@@ -53,15 +54,23 @@ body{
     text-decoration: none;
 }
 
+header div a{
+    transition: 0.2s;
+    color: var(--color2);
+}
+
+header div a:hover{
+    color: var(--white);
+    transition: 0.8s;
+}
+
 .title {
     display: flex;
     color: #1A1110;
-    margin-bottom: 5%;
     font-size: 1.5rem;
     text-align: left;
     line-height: 48px;
     font-weight: 700;
-    letter-spacing: -0.5px;
     font-family: var(--header-font);
     justify-content: center;
     align-items: center;
@@ -69,9 +78,7 @@ body{
 
 .modalBtn {
     height: 5vh;
-    min-height: 30px;
     width: 15vh;
-    min-width: 130px;
 
     border-radius: 5px;
     border: 0;
@@ -80,30 +87,26 @@ body{
     background-color: var(--20);
 }
 
-.modal {
-    display: flex; 
-    position: fixed;
-    z-index: 1; 
-    left: 0;
-    top: 0;
+.modal { 
     width: 100%; 
-    height: 100%;
-    overflow: auto;
+    height: 80%;
     background-color: rgba(0,0,0,0.4);
 }
 
 .modal .content {
     background-color: #D3D3D3;
-    margin: 15% auto; 
+    margin-left: 20%;
     padding: 30px;
     border-radius: 5px;
-    width: 60%; 
+    width: 60%;
+    height: 90%; 
     font-size: 1rem;
 
     display: flex;
     align-items: center;
     text-align: center;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .modal input{
@@ -145,7 +148,7 @@ header{
 }
 
 header img{
-    width: 100px;
+    width: 200px;
     height: 100px;
 }
 
@@ -161,20 +164,32 @@ header a{
 
 
 .cursos{
+    font-family: var(--base-font);
     height: 75vh;
     width: 99.6vw;
+    font-size: 2.2rem;
     
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     overflow: hidden;
     align-items: center;
+    background-color: var(--color);
+
+    background-image: url(./assets/info1.jpg);
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+
+    color: var(--black);
 }
 
 .cursosList{
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .index{
@@ -183,17 +198,14 @@ header a{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(./assets/123.jpg) ;
+    background-image: url(./assets/123.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-
-
-
-
 footer{
+    font-family: var(--header-font);
     display: flex;
     font-size: 2rem;
     justify-content: center;
@@ -202,7 +214,6 @@ footer{
     color: var(--color2);
     background-color: var(--30);
     gap: 30px;
-    pointer-events: none;
 }
 
 footer ul{
@@ -210,11 +221,17 @@ footer ul{
     
     justify-content: space-between;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
+}
+
+footer ul :hover{
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.4s;
 }
 
 footer p{
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: var(--color2);
 }
 
@@ -222,3 +239,30 @@ footer ul li a{
     color: var(--color2);
 }
 
+.button-html, .button-css, .button-js, .button-react, .button-nodeJS {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--20);
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid var(--20);
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 var(--color2);
+  }
+  
+  button:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 var(--color2);
+    transition: 1.5s;
+  }
+  
+  button:active {
+    transform: scale(0.9);
+  }
