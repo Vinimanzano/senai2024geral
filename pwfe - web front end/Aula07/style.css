@@ -204,6 +204,68 @@ header a{
     background-repeat: no-repeat;
 }
 
+.form{
+    height: 75vh;
+    width: 99.6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(./assets/formularioo.png);
+}
+
+
+.matricula{
+    height: 75vh;
+    width: 99.6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--color);
+}
+
+.btn{
+    height: 5vh; 
+    width: 20vh;
+
+    border-radius: 5px;
+    border: 0;
+}
+
+.matricula h1{
+    font-size: 3rem;
+    font-family: var(--header-font);
+    color: var(--color2);
+}
+
+.matricula form h1{
+    display: flex;
+    font-family: var(--header-font);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--color2);
+    margin: 20px;
+}
+
+.matricula form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.matricula form input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    width: 15%;
+    height: 5vh;
+}
+
 footer{
     font-family: var(--header-font);
     display: flex;
