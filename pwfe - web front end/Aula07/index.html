@@ -18,17 +18,37 @@
             <a href="./index.html">Home</a>
             <a href="./cursos.html">Cursos</a>
             <a href="./matricula.html">Matrícula</a>
-            <button class="modalBtn"><a href="">Contato</a></button>
+            <a onclick="switchModal()">Contato</a>
         </div>
     </header>
 
+    <dialog>
+        <h1>Contato:</h1>
+        <div class="tudo">
+            <form class="modal">
+                <div>
+                    <label for="name">Nome:</label>
+                    <input id="name" type="text">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input id="email" type="text">
+                </div>
+                <div>
+                    <label for="message">Mensagem:</label>
+                    <textarea name="mensagem" id="mensagem"></textarea>
+                </div> 
+                <button type="submit" class="btn-form">Enviar</button>
+            </form>
+        </div>
+        <button class="botaozin" onclick="closeModal()">Fechar</button>
+    </dialog> 
+
     <main class="index">
-        <div class="modal">
-            <div class="content">
-              <h1 class="title">Nome: </h1><input id="name" type="text" required>
-              <h1 class="title">Email: </h1><input id="email" type="text" required>
-              <h1 class="title">Mensagem: </h1><input id="message" type="text" required>
-              <button class="btnn">Enviar</button>
+        <div class="container">
+            <a>Desperte seu potencial. <span>Estude conosco!</span></a>
+
+            <h3>Você vai se preparar para os desafios reais do mercado de trabalho com muita prática e apoio contínuo por meio de cursos feitos para o seu momento de vida e objetivos de carreira.</h3>
             </div>
         </div>    
     </main>
