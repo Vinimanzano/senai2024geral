@@ -1,0 +1,62 @@
+SELECT * FROM `cliente` WHERE nome like 'Motta%';
+
+SELECT nome, telefone FROM cliente WHERE nome like '%mello%';
+
+SELECT nome, telefone FROM cliente WHERE telefone like '%99%';
+
+SELECT nome, telefone FROM cliente ORDER BY nome;
+
+SELECT * FROM `cliente` order by nome;
+
+SELECT * FROM `cliente` order by nome desc;
+
+SELECT * FROM `cliente` order by email;
+
+SELECT * FROM `cliente` order by email desc;
+
+SELECT * FROM `cliente` WHERE nome like "osmar%" order by email DESC;
+
+SELECT * FROM `pedido` WHERE idCliente = 1
+
+SELECT *, AVG(valor) FROM `pedido` GROUP by idCliente;
+
+SELECT idCliente, AVG(valor) FROM `pedido` GROUP by idCliente;
+
+SELECT count(idCliente) FROM PEDIDO GROUP BY idCliente;
+
+SELECT idCliente, count(idCliente) FROM `PEDIDO` GROUP by idCliente;
+
+SELECT idCliente, SUM(valor) as 'valor total dos pedidos' FROM pedido GROUP by idCliente;
+
+SELECT idCliente, MAX(valor) as 'Maior valor' FROM pedido GROUP by idCliente;
+
+CREATE VIEW total_por_cliente as
+SELECT idCliente, SUM(valor) as 'valor total dos pedidos' FROM pedido GROUP by idCliente;
+
+
+SELECT c.nome, c.endereco, p. * FROM cliente c INNER JOIN pedido p on c.idCliente = p.idCliente;
+
+
+-------------------//-------------------//-------------------//-------------------//-------------------//-------------------//-------------------//-------------------
+
+1)CREATE VIEW clientes_nome as
+1)SELECT nome FROM cliente;
+
+2)CREATE VIEW rota_moto AS
+2)SELECT motorista, COUNT(idEntrega) from entrega GROUP by motorista; 
+
+3)create view entregas_por_motorista as
+3)SELECT motorista, COUNT(idEntrega) from entrega GROUP by motorista; 
+
+4)CREATE VIEW Rota_ordenada as
+4)SELECT * FROM rota ORDER BY `rota`.`distancia`;
+
+5)CREATE VIEW order_nome as
+5)SELECT * FROM funcionario ORDER BY nome;
+
+6)CREATE VIEW veiculo_por_rota as
+6)SELECT * FROM `veiculo_por_rota;
+
+7)CREATE VIEW relatorio_de_entregas_01 as
+7)SELECT f.nome, v.modelo, e. * FROM funcionario f INNER JOIN entrega e on e.motorista = f.idFuncionario INNER JOIN veiculo v on e.placa = v.placa;
+
