@@ -1,23 +1,34 @@
+<<<<<<< HEAD
+=======
+1 - Crie uma consulta que mostre somente os nomes de todos os clientes:
+>>>>>>> 24c25f52f6049c22acc4ecae6c4cc84009e298f9
 1 - CREATE VIEW clientes_nome as
 1 - SELECT nome FROM cliente;
 
+2 - Crie uma consulta que agrupe as estregas e mostre quantas cada motorista fez:
 2 - CREATE VIEW rota_moto AS
 2 - SELECT motorista, COUNT(idEntrega) from entrega GROUP by motorista; 
 
+3 - Salve a consulta anterior em um relatório chamado 'entregas por motorista':
 3 - create view entregas_por_motorista as
 3 - SELECT motorista, COUNT(idEntrega) from entrega GROUP by motorista; 
 
+4 - Crie uma consulta que mostre todas as rotas ordenadas por distância:
 4 - CREATE VIEW Rota_ordenada as
 4 - SELECT * FROM rota ORDER BY `rota`.`distancia`;
 
+5 - Crie uma consulta que mostre os funcionários ordenados por nome:
 5 - CREATE VIEW order_nome as
 5 - SELECT * FROM funcionario ORDER BY nome;
 
+6 - Crie uma consulta que mostre qual veículo fez mais entregas e o total de entregas que ele fez:
 6 - CREATE VIEW veiculo_por_rota as
 6 - SELECT * FROM `veiculo_por_rota;
 
+7 - Crie um relatório que mostre todas as entregas com os nomes dos motoristas, modelos dos veículos, salve como 'relatorio_de_entregas_01':
 7 - CREATE VIEW relatorio_de_entregas_01 as
 7 - SELECT f.nome, v.modelo, e. * FROM funcionario f INNER JOIN entrega e on e.motorista = f.idFuncionario INNER JOIN veiculo v on e.placa = v.placa;
 
+8 - Crie um relatório que mostre todas as entregas com os nomes dos motoristas, modelos dos veículos e o valor total da entrega, salve como 'relatorio_de_entregas_02':
 8 - CREATE VIEW relatorio_de_entregas_02 as
 8 - SELECT f.nome, v.modelo, SUM(p.valor) AS 'Valor Total', e. * FROM funcionario f INNER JOIN entrega e on f.idFuncionario = e.motorista INNER JOIN veiculo v on v.placa = e.placa INNER JOIN pedido p on p.idEntrega = e.idEntrega GROUP BY e.idEntrega;
