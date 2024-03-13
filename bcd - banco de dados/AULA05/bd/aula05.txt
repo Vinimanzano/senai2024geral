@@ -60,3 +60,5 @@ SELECT c.nome, c.endereco, p. * FROM cliente c INNER JOIN pedido p on c.idClient
 7)CREATE VIEW relatorio_de_entregas_01 as
 7)SELECT f.nome, v.modelo, e. * FROM funcionario f INNER JOIN entrega e on e.motorista = f.idFuncionario INNER JOIN veiculo v on e.placa = v.placa;
 
+8)CREATE VIEW relatorio_de_entregas_02 as
+8)SELECT f.nome, v.modelo, SUM(p.valor) AS 'Valor Total', e. * FROM funcionario f INNER JOIN entrega e on f.idFuncionario = e.motorista INNER JOIN veiculo v on v.placa = e.placa INNER JOIN pedido p on p.idEntrega = e.idEntrega GROUP BY e.idEntrega;
