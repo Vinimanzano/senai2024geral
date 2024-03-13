@@ -1,3 +1,5 @@
+## Vamos começar a criar nossos relatórios;
+```sql
 -- Listar todos
 select * from cliente;
 -- Filtrar por nome exato
@@ -60,6 +62,7 @@ select * from cliente c inner join pedido p on c.idcliente = p.idcliente;
 -- Escolhendo os principais campos
 -- Nome do cliente, o endereço e todos os dados do pedido
 Select c.nome, c.endereco, p.* from cliente c inner join pedido p on c.idcliente = p.idcliente;
+```
 
 
 -------------------//-------------------//-------------------//-------------------//-------------------//-------------------//-------------------//-------------------//
