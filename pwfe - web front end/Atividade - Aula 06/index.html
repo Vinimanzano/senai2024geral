@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento de Tarefas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success" >
+        <a class="navbar-brand" href="#">Sistema de Gerenciamento de Tarefas</a>
+        <div class="ml-auto">
+
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">Nova Tarefa</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#contactModal">Contato</button>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#tarefasModal">Tarefas</button>
+        
+    </div>
+
+    </nav>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-vindo</h1>
+            <p class="lead">Aqui você consegue gerenciar suas tarefas da melhor forma possível.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newTaskModalLabel">Nova Tarefa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <form>
+                    <div class="form-group">
+                        <label for="taskDescription">Descrição:</label>
+                        <input type="text" class="form-control" id="taskDescription" placeholder="Digite a descrição da tarefa">
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Data de Vencimento:</label>
+                        <input type="date" class="form-control" id="dueDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="form-control" id="status">
+                            <option value="em andamento">Em Andamento</option>
+                            <option value="concluída">Concluída</option>
+                            <option value="atrasada">Atrasada</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userId">ID do Usuário:</label>
+                        <input type="text" class="form-control" id="userId" placeholder="Digite o ID do usuário">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Entre em Contato</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <form>
+                    <div class="form-group">
+                    <label for="contactName">Digite seu Nome:</label>
+                    <input type="text" class="form-control" id="contactName" placeholder="Digite seu nome">
+                    <br>
+                    <label for="contactName">Digite seu E-mail:</label>
+                    <input type="text" class="form-control" id="contactEmail" placeholder="Digite seu email">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="tarefasModal" tabindex="-1" role="dialog" aria-labelledby="tarefasModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Visualizador de Tarefas</h2> 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table>
+                        <theader>
+                            <tr>
+                                <th>DATA</th>
+                                <th>TAREFA</th>
+                            </tr>
+                        </theader>
+                        <tbody>
+                            <tr>
+                                <td>15/03/2024 -</td>
+                                <td>Alinhar todos os códigos.</td>
+                            </tr>
+                            <tr>
+                                <td>17/03/2024 -</td>
+                                <td>Acompanhar Projeto e testes.</td>
+                            </tr>
+                            <tr>
+                                <td>20/03/2024 -</td>
+                                <td>Verificar bugs e códigos do sistema.</td>
+                            </tr>
+                            <tr>
+                                <td>31/03/2024 -</td>
+                                <td>Concluír o projeto e iniciar o próximo.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
