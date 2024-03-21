@@ -5,16 +5,17 @@ USE db;
 CREATE TABLE usuarios(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     senha  VARCHAR (50) NOT NULL
 );
 
 CREATE TABLE tarefas(
     id  INTEGER PRIMARY KEY AUTO_INCREMENT,
+    responsavel INTEGER,
     descricao TEXT NOT NULL,
     data_limite DATETIME NOT NULL,
     status ENUM('Aberto', 'Em Andamento', 'Finalizado') NOT NULL,
-    responsavel INTEGER REFERENCES usuarios(id)
+    FOREIGN KEY (responsavel) REFERENCES usuarios(id)
 );
 
 INSERT INTO usuarios (nome, email, senha)
@@ -28,6 +29,9 @@ INSERT INTO tarefas (descricao, data_limite, status, responsavel)
 VALUES 
     ("Tarefa de teste 1", NOW() + INTERVAL 1 MONTH, "Aberto", 1),
     ("Tarefa de teste 2", NOW() + INTERVAL 2 WEEK, "Em Andamento", 2),
+    ("Tarefa de teste 4", NOW() + INTERVAL 2 WEEK, "Em Andamento", 2),
+    ("Tarefa de teste 4", NOW() + INTERVAL 2 WEEK, "Em Andamento", 2),
+    ("Tarefa de teste 4", NOW() + INTERVAL 2 WEEK, "Em Andamento", 2),
     ("Tarefa de teste 3", NOW() + INTERVAL 3 DAY, "Finalizado", 3);
 
 SELECT * FROM tarefas;

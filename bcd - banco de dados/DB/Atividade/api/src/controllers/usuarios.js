@@ -4,7 +4,7 @@ const con = require('../connect/connect').con;
 
 const create = (req, res) => {
     const {nome, email, senha} = req.body;
-    const query = `INSERT INTO usuarios(nome, email, senha) VALUE ('${nome}', '${email}', '${senha}')`;
+    const query = `INSERT INTO usuarios(nome, email, senha) VALUE ('${nome}', '${email}', '${MD5(senha)}')`;
     con.query(query, (err, result) => {
         if(err) {
             res.send(err);
@@ -19,8 +19,9 @@ const read = (req, res) => {
     con.query(query, (err, result) => {
         if(err) {
             res.send(err);
+        } else {
+            res.send(result);
         }
-        res.send(result);
     })
 }
 
@@ -43,10 +44,30 @@ const del = (req, res) => {
     con.query(query, (err, result) => {
         if(err) {
             res.send(err);
+        } else {
+            res.send(result);
         }
-        res.send(result);
     })
 }
 
-module.exports = { create, read, update, del };
+const login = (req, res) => {
+    const {email, senha} = req.body;
+    const query = `SELECT * FROM usuarios WHERE email = '${email}'`;
+    con.query(query, (err, result) => {
+        if(err) {
+            res.status(400).json(err).end();
+        } else {
+            if(result.length > 0) {
+                if(result[0].senha == MD5(senha)) {
+                    res.json({status: 200}).end();
+                } else {
+                    res.json({loginMessage: 'Senha inválida!', type: 'password', status: 401}).end();
+                }
+            } else {
+                res.json({loginMessage: 'Email inválido!', type: 'email', status: 401}).end();
+            }
+        };
+    });
+}
 
+module.exports = { create, read, update, del, login };
