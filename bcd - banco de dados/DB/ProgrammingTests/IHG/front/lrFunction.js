@@ -3,15 +3,10 @@ const uri = 'http://localhost:3000'
 const loginForm = document.querySelector('#loginForm');
 const alertmsg = document.querySelector('.alert');
 
-<<<<<<< HEAD
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-=======
 emailLogin.addEventListener('input', () => {
     emailLogin.classList.remove('wrong');
     alertmsg.classList.add('opacity');
 })
->>>>>>> c0e024fcd43dbc5e976a8e35ba25b18d5e942267
 
 passwordLogin.addEventListener('input', () => {
     passwordLogin.classList.remove('wrong');
