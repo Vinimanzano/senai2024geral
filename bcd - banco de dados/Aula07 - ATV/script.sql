@@ -18,16 +18,13 @@ CREATE TABLE manutencao(
 
 CREATE TABLE funcionario(
     matricula INTEGER PRIMARY KEY NOT NULL,
-    funcionario VARCHAR(50) NOT NULL,
+    funcionario VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE telefone(
-    id_manutencao INTEGER  NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    matricula_funcionario VARCHAR(50) NOT NULL REFERENCES [funcionario: matricula], 
-    telefone VARCHAR(50) NOT NULL,
-    telefone_secundario VARCHAR(50),
-    FOREIGN KEY (id_manutencao) REFERENCES manutencao(id_manutencao),
-     ON DELETE CASCADE ON UPDATE
+CREATE TABLE telefone (
+    matricula_funcionario VARCHAR(50) NOT NULL REFERENCES, 
+    telefone VARCHAR(30) NOT NULL,
+    telefone_secundario VARCHAR(30)
 )
 
 
@@ -69,7 +66,7 @@ INSERT INTO funcionario (matricula, funcionario)
 VALUES
 ("48562", "Evandro Silva"),
 ("48542", "Jaqueline Teixeira"),
-("48542", "Jaqueline Teixeira",
+("48542", "Jaqueline Teixeira"),
 ("48522", "Keli Matos"),
 ("48522", "Keli Matos"),
 ("48482", "Osvaldo Oliveira"),
