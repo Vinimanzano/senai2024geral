@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Check</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Daily Check</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+ 
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./temperatura.html">Temperatura</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#tasksModal">Tarefas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#contactModal">Contato</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        Tarefa: Limpar o quarto
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Detalhes da Tarefa</h5>
+        <p class="card-text">- Dia de Início: 01/04/2024</p>
+        <p class="card-text">- Dia do Fim: 05/04/2024</p>
+        <p class="card-text">- Descrição: Limpar todo o quarto e organizar os itens.</p>
+        <a href="#" class="btn btn-primary">Concluir</a>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        Tarefa: Terminar o projeto do site
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Detalhes da Tarefa</h5>
+        <p class="card-text">- Dia de Início: 05/04/2024</p>
+        <p class="card-text">- Dia do Fim: 30/04/2024</p>
+        <p class="card-text">- Descrição: Terminar o projeto do site.</p>
+        <a href="#" class="btn btn-primary">Concluir</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="tasksModal" tabindex="-1" role="dialog" aria-labelledby="tasksModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tasksModalLabel">Tarefas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar tarefa -->
+          <form>
+            <div class="form-group">
+              <label for="taskNameInput">Nome da Tarefa</label>
+              <input type="text" class="form-control" id="taskNameInput" placeholder="Digite o nome da tarefa">
+            </div>
+            <div class="form-group">
+              <label for="startDateInput">Dia de Início</label>
+              <input type="date" class="form-control" id="startDateInput">
+            </div>
+            <div class="form-group">
+              <label for="endDateInput">Dia do Fim</label>
+              <input type="date" class="form-control" id="endDateInput">
+            </div>
+            <div class="form-group">
+              <label for="descriptionInput">Descrição</label>
+              <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Digite a descrição da tarefa"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Tarefa</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Contato -->
+  <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Contato</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário de contato -->
+          <form>
+            <div class="form-group">
+              <label for="nameInput">Nome</label>
+              <input type="text" class="form-control" id="nameInput" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+              <label for="emailInput">Email</label>
+              <input type="email" class="form-control" id="emailInput" placeholder="Digite seu email">
+            </div>
+            <div class="form-group">
+              <label for="phoneInput">Telefone</label>
+              <input type="tel" class="form-control" id="phoneInput" placeholder="Digite seu telefone">
+            </div>
+            <div class="form-group">
+              <label for="messageInput">Mensagem</label>
+              <textarea class="form-control" id="messageInput" rows="3" placeholder="Digite sua mensagem"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JavaScript (opcional, para funcionalidades como modais) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
