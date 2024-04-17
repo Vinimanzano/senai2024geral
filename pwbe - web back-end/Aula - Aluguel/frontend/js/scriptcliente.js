@@ -8,6 +8,7 @@ function create() {
     const data = {
         cpf: form.cpf.value,
         nome_cliente: form.nome_cliente.value,
+        telefones: form.telefones.value
     }
 
     fetch(uri, {
@@ -122,6 +123,7 @@ function renderData() {
             <tr>
                 <td>${item.cpf}</td>
                 <td>${item.nome_cliente}</td>
+                <td>${item.telefones}</td>
                 <td>
             </tr>
         `;
