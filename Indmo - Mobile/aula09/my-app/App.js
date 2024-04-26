@@ -5,7 +5,7 @@ import PlayerScreen from './componentes/PlayerScreen';
 import PlaylistsScreen from './componentes/PlaylistsScreen';
 import AboutUsScreen from './componentes/AboutUsScreen';
 import CreateMusicScreen from './componentes/CreateMusicScreen';
-import { MaterialIcons } from '@expo/vector-icons'; // Troquei para MaterialIcons
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,13 +18,13 @@ export default function App() {
             let iconName;
 
             if (route.name === 'Player') {
-              iconName = 'headset'; // Ícone de fone de ouvido para a tela do Player
+              iconName = 'headset';
             } else if (route.name === 'Playlists') {
-              iconName = 'queue-music'; // Ícone de lista de reprodução para a tela de Playlists
+              iconName = 'queue-music';
             } else if (route.name === 'About Us') {
-              iconName = 'info'; // Ícone de informação para a tela Sobre Nós
+              iconName = 'info';
             } else if (route.name === 'Create Music') {
-              iconName = 'add-box'; // Ícone de adicionar para a tela de Criar Música
+              iconName = 'add-box';
             }
 
             // Retorna o ícone correspondente com a cor e o tamanho especificados
@@ -32,8 +32,8 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'blue', // Cor do ícone ativo
-          inactiveTintColor: 'gray', // Cor do ícone inativo
+          activeTintColor: 'blue',
+          inactiveTintColor: 'gray',
         }}
       >
         <Tab.Screen name="Player" component={PlayerScreen} />
