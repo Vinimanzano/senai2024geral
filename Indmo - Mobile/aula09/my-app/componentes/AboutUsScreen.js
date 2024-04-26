@@ -8,9 +8,9 @@ export default function AboutUsScreen() {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Text style={styles.text}>Quem somos</Text>
+        <Text style={styles.text}>Quem somos?</Text>
         <Text style={styles.text}>Somos uma empresa de projeto privado, 
-          com foco na criação de aplicativos mobile e web.</Text>
+          com foco na criação de aplicativos mobile e web voltados para o marcado de musicas.</Text>
       </View>
     </ImageBackground>
   );
@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: 'white',
   },
 });

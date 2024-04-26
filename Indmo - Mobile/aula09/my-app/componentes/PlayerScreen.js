@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, FlatList, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, ImageBackground } from 'react-native';
 import { Audio } from 'expo-av';
+import { AntDesign } from '@expo/vector-icons'; // Importar ícones do AntDesign
 
 const songs = [
   { title: 'Kamisa10', file: require('../songs/kamisa10.mp3') },
@@ -59,27 +60,21 @@ export default function PlayerScreen() {
 
   return (
     <ImageBackground
-      source={require('../assets/logo.png')} s
+      source={require('../assets/logo.png')}
       style={styles.background}
     >
       <View style={styles.container}>
         <Text style={styles.title}>Player de Música</Text>
         <View style={styles.buttonContainer}>
-          <Button
-            title="Anterior"
-            onPress={handlePreviousSong}
-            style={styles.navigationButton}
-          />
-          <Button
-            title={isPlaying ? 'Pausar' : 'Reproduzir'}
-            onPress={isPlaying ? stopSound : playSelectedSong}
-            style={styles.playButton}
-          />
-          <Button
-            title="Próxima"
-            onPress={handleNextSong}
-            style={styles.navigationButton}
-          />
+          <TouchableOpacity onPress={handlePreviousSong} style={styles.navigationButton}>
+            <AntDesign name="stepbackward" size={24} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={isPlaying ? stopSound : playSelectedSong} style={styles.playButton}>
+            <AntDesign name={isPlaying ? "pausecircle" : "playcircleo"} size={50} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleNextSong} style={styles.navigationButton}>
+            <AntDesign name="stepforward" size={24} color="white" />
+          </TouchableOpacity>
         </View>
         <FlatList
           data={songs}
@@ -113,13 +108,13 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 20,    
   },
   navigationButton: {
-    width: '30%',
+    padding: 10,
   },
   playButton: {
-    width: '30%',
+    padding: 10,
   },
   songList: {
     flex: 1,
