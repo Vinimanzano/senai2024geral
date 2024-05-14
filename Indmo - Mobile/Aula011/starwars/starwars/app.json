@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "EscutaAi",
-    "slug": "EscutaAi",
+    "name": "starwars",
+    "slug": "starwars",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,23 +15,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.vinimanzano.EscutaAi"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.vinimanzano.EscutaAi"
+      "package": "com.vinimanzano.starwars"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "779bec95-7ed6-4207-92bf-a9ccdb5d2793"
+        "projectId": "7f1f55b7-7067-4825-a7ae-dab48fc3b696"
       }
-    }
+    },
+    "owner": "vinimanzano"
   }
 }
