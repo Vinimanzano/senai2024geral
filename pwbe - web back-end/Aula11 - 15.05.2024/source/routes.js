@@ -13,6 +13,11 @@ router.get('/clientes', clientes.read);
 router.put('/clientes', clientes.update);
 router.delete('/clientes/:id', clientes.del);
 
+router.get('/clientes/:id',clientes.readbyId);
+
+router.post('/clientes/nome',clientes.readByName);
+
+
 //Telefones
 router.post('/telefone', telefone.create);
 router.get('/telefone', telefone.read);

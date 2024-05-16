@@ -20,6 +20,38 @@ const read = async (req, res) => {
     res.status(200).json(cliente).end();
 }
 
+//Read By Id
+const readbyId = async (req, res) => {
+
+    const cliente = await prisma.clientes.findUnique({
+        where: {
+            id: Number(req.params.id)
+        },
+        include : {
+            telefones : {
+                select : {
+                    numero: true
+                }
+            }
+        }
+    });
+    res.status(200).json(cliente).end();
+}
+
+//Read By Name
+const readByName = async (req, res) => {
+    const { nome } = req.body
+    const cliente = await prisma.clientes.findMany({
+        where : {
+            nome : {
+                contains : nome
+            }
+        }
+    });
+    res.status(200).json(cliente).end();
+}
+
+
 //UPDATE
 const update = async (req, res) => {
 
@@ -47,6 +79,8 @@ const del = async (req, res) => {
 module.exports = {
     create,
     read,
+    readbyId,
+    readByName,
     update,
-    del
+    del,
 }
