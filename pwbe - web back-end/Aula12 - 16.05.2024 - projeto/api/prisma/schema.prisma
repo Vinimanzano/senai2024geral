@@ -40,7 +40,7 @@ model hoteis{
 
 model telefones{
   id Int @id @default(autoincrement())
-  telefone String @db.VarChar(30)
+  telefone String @db.VarChar(30) 
   id_hotel Int
   hotel hoteis @relation(fields: [id_hotel], references: [id])
 }
