@@ -5,8 +5,12 @@ const destinos = require('./controllers/destinos')
 const telefones = require('./controllers/telefones')
 const pontos_turisticos = require('./controllers/pontos_turisticos')
 
-router.get('/', (req, res) => {
-    res.send('Hello World!');
+router.get('/', async (req, res) => {
+    try {
+        res.send('Hello World!');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 router.post('/destinos', destinos.create);
