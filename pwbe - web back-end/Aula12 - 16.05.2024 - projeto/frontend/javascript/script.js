@@ -1,15 +1,19 @@
+// Função para obter o ano atual
 function getCurrentYear() {
     return new Date().getFullYear();
 }
 
+// Função para atualizar o texto de direitos autorais no rodapé
 function updateCopyright() {
     const year = getCurrentYear();
     const copyrightText = `Copyright © ${year} by Vinícius Manzano | All Rights Reserved.`;
     document.getElementById("copyright").innerHTML = copyrightText;
 }
 
+// Atualiza os direitos autorais assim que a página carrega
 updateCopyright();
 
+// Função principal que é executada quando o DOM é totalmente carregado
 document.addEventListener("DOMContentLoaded", function() {
     // Carrega e exibe dados para cada seção
     loadAndDisplayData('destinos');
@@ -21,9 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('formDestinos').addEventListener('submit', function(event) {
         event.preventDefault();
         const nomeDestino = document.getElementById('nomeDestino').value.trim();
-        if (nomeDestino !== '') {
-            adicionarItem('destinos', { nome: nomeDestino });
+        const valorDestino = document.getElementById('valorDestino').value.trim();
+        const dataDestino = document.getElementById('dataDestino').value.trim();
+        if (nomeDestino !== '' && valorDestino !== '' && dataDestino !== '') {
+            adicionarItem('destinos', { nome: nomeDestino, valor: valorDestino, data: dataDestino });
             document.getElementById('nomeDestino').value = ''; // Limpa o campo após adicionar
+            document.getElementById('valorDestino').value = '';
+            document.getElementById('dataDestino').value = '';
         }
     });
 
@@ -127,7 +135,7 @@ function displayData(endpoint, data) {
             <td>${item.nome}</td>
             <td>${item.data}</td>
             <td>
-                <button onclick="editarItemForm('${endpoint}', ${item.id}, '${item.nome}', )">Editar</button>
+                <button onclick="editarItemForm('${endpoint}', ${item.id}, '${item.nome}')">Editar</button>
                 <button onclick="excluirItem('${endpoint}', ${item.id})">Excluir</button>
             </td>
         `;
