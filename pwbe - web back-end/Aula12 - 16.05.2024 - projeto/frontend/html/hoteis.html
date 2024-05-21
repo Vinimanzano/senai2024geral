@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Viagem - Hotéis</title>
 </head>
-<body>
+<body onload="loadItens()">
     <header>
         <img src="../img/logo.png" alt="logo">
         <nav class="btn-topo">
@@ -23,44 +23,47 @@
     </header>
 
     <main>
-        <section id="hoteis">
-            <h2>Hotéis</h2>
-            <!-- Formulário para adicionar hotéis -->
-            <form id="formHoteis">
-                <label for="nomeHotel">Nome:</label>
-                <input type="text" id="nomeHotel" name="nomeHotel">
-                
-                <label for="ValorHotel">Valor:</label>
-                <input type="text" id="valorHotel" name="valorHotel">
+        <h2>Hotéis</h2>
+        <!-- Formulário para adicionar hotéis -->
+        <form id="formHoteis">
+            <label for="nomeHotel" aria-label="Nome do Hotel">Nome:</label>
+            <input type="text" id="nomeHotel" name="nomeHotel">
+            
+            <label for="valorHotel" aria-label="Valor do Hotel">Valor:</label>
+            <input type="number" id="valorHotel" name="valorHotel">
 
-                <label for="Avaliacao">Avaliação:</label>
-                <input type="text" id="AvaliacaoHotel" name="AvaliacaoHotel">
+            <label for="AvaliacaoHotel" aria-label="Avaliação do Hotel">Avaliação:</label>
+            <input type="text" id="AvaliacaoHotel" name="AvaliacaoHotel">
 
-                <label for="emailHotel">E-mail:</label>
-                <input type="text" id="emailHotel" name="emailHotel">
+            <label for="emailHotel" aria-label="E-mail do Hotel">E-mail:</label>
+            <input type="text" id="emailHotel" name="emailHotel">
 
-                <label for="siteHotel">Site:</label>
-                <input type="text" id="siteHotel" name="siteHotel">
+            <label for="siteHotel" aria-label="Site do Hotel">Site:</label>
+            <input type="text" id="siteHotel" name="siteHotel">
+            
+            <label for="id_destino" aria-label="ID do Destino">id_Destino:</label>
+            <input type="text" id="id_destino" name="id_destino">
 
-                <button type="submit">Adicionar Hotel</button>
-            </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Valor</th>
-                        <th>Avaliação</th>
-                        <th>Email</th>
-                        <th>Site</th>
-                        <th>Ações</th> <!-- Adicionando cabeçalho para a coluna de ações -->
-                    </tr>
-                </thead>
-                <tbody id="hoteisTableBody">
-                    <!-- Dados dos hotéis serão inseridos aqui dinamicamente -->
-                </tbody>
-            </table>
-        </section>
+            <button type="submit">Adicionar Hotel</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Avaliação</th>
+                    <th>Email</th>
+                    <th>Site</th>
+                    <th>id_destino</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="hoteisTableBody">
+                <!-- Dados dos hotéis serão inseridos aqui dinamicamente -->
+            </tbody>
+        </table>
+        <p id="error-message" style="display: none; color: red;">Erro: Tabela de hotéis não encontrada.</p>
     </main>
 
     <footer>
@@ -73,6 +76,7 @@
         </div>
     </footer>
     
-    <script src="../javascript/script.js" defer></script>
+    <script src="../javascript/copyright.js" defer></script>
+    <script src="../javascript/hoteis.js" defer></script>
 </body>
 </html>
