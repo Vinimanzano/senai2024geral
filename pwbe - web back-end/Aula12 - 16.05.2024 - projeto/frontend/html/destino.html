@@ -23,7 +23,7 @@
     </header>
 
     <main>
-        <section id="destinos">
+        
             <h2>Destinos</h2>
             <!-- Formulário para adicionar destinos -->
             <form id="formDestinos">
@@ -36,13 +36,14 @@
                 <label for="dataDestino">Data:</label>
                 <input type="date" id="dataDestino" name="dataDestino">
 
-                <button type="submit">Adicionar Destino</button>
+                <button type="button" onclick="adicionarItemForm('destinos')">Adicionar Destino</button>
             </form>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Valor</th>
                         <th>Data</th>
                         <th>Ações</th>
                     </tr>
@@ -51,7 +52,6 @@
                     <!-- Dados dos destinos serão inseridos aqui dinamicamente -->
                 </tbody>
             </table>
-        </section>
     </main>
 
     <footer>
@@ -64,4 +64,7 @@
         </div>
     </footer>
     
-    <script src="../javascript/script.js" defer></script>
+    <script src="../javascript/copyright.js" defer></script>
+    <script src="../javascript/destino.js" defer></script>
+</body>
+</html>

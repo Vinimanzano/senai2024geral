@@ -89,12 +89,12 @@ async function excluirItem(id) {
 }
 
 function adicionarItemForm(destinos) {
-    const nome = document.getElementById("nomeDestino").value;
-    const valor = document.getElementById("valorDestino").value;
-    const data = document.getElementById("dataDestino").value;
+    const nome = document.getElementById(`${destinos}Nome`).value;
+    const valor = document.getElementById(`${destinos}Valor`).value;
+    const data = document.getElementById(`${destinos}Data`).value;
     
     const novoItem = { nome, valor, data };
-    fetch(uri + "/hoteis", {
+    fetch(uri, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -103,18 +103,17 @@ function adicionarItemForm(destinos) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Erro ao adicionar hotel');
+            throw new Error('Erro ao adicionar item');
         }
         return response.json();
     })
     .then(responseData => {
-        hoteis.push(responseData);
-        displayData(destinos, hoteis); // Corrigido para passar 'destinos' e 'hoteis'
+        itens.push(responseData);
+        displayData(destinos, itens);
     })
     .catch(error => {
-        console.error('Erro ao adicionar hotel:', error);
+        console.error('Erro:', error);
     });
 }
-
 
 loadItens();
