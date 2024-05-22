@@ -25,7 +25,7 @@ CREATE TABLE `hoteis` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(255) NOT NULL,
     `valor` DECIMAL(10, 2) NOT NULL,
-    `avaliacao` INTEGER NOT NULL DEFAULT 0,
+    `avaliacao` VARCHAR(191) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `site` VARCHAR(255) NULL,
     `id_destino` INTEGER NOT NULL,
