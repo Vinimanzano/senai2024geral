@@ -1,0 +1,24 @@
+doctype html
+html(lang="pt-br")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Escola ACME
+        link(rel='stylesheet', href='style.css')
+        link(rel='shortcut icon', href='icone.png')
+    body
+        header
+            h1 Escola ACME
+        main
+            nav
+                ul
+                    li Turmas
+                    li Alunos
+                    li Professores
+            div(class="container")
+                each turma in turmas
+                    div(class="card")
+                        p(class="titulo") #{turma.id} - #{turma.abreviacao}
+                        p(class="dados") #{turma.abreviacao}
+                        p(class="dados") #{turma.nome}
+        footer

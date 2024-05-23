@@ -1,5 +1,5 @@
 const uri = "http://localhost:3000/pontos_turisticos";
-let pontos_turisticos = [];
+let itens = [];
 
 function loadItens() {
     fetch(uri)
@@ -18,14 +18,14 @@ function loadItens() {
         });
 }
 
-function displayData(data) {
+function displayData(itens) {
     const tableBody = document.getElementById('pontos_turisticosTableBody');
     if (!tableBody) {
         console.error('Elemento pontos_turisticosTableBody não encontrado.');
         return;
     }
     tableBody.innerHTML = '';
-    data.forEach(item => {
+    itens.forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${item.id}</td>
@@ -56,7 +56,7 @@ function adicionarItemForm() {
     const endereco = document.getElementById('enderecoPontoTuristico').value;
     const telefone = document.getElementById('telefonePontoTuristico').value;
     const valor = document.getElementById('valorPontoTuristico').value;
-    const id_destino = document.getElementById('id_destino').value;
+    const id_destino = Number(document.getElementById('id_destino').value);
     if (!nome || !endereco || !telefone || !valor || !id_destino) {
         console.error('Por favor, preencha todos os campos.');
         return;
@@ -83,6 +83,11 @@ function adicionarItemForm() {
             console.error('Erro ao adicionar item:', error);
         });
 }
+
+document.querySelector('#formPontosTuristicos').addEventListener('submit', (e) => {
+    e.preventDefault();
+    adicionarItemForm();
+});
 
 function editarItemForm(id, nome, endereco, telefone, valor, id_destino) {
     const novoNome = prompt("Digite o novo nome:", nome);
