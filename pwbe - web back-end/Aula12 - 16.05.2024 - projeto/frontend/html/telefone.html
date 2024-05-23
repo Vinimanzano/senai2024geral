@@ -10,7 +10,7 @@
     <script src="../javascript/telefone.js" defer></script>
     <title>Viagem - Telefones</title>
 </head>
-<body onload="loadItens()">
+<body>
     <header>
         <img src="../img/logo.png" alt="logo">
         <nav class="btn-topo">
@@ -25,31 +25,30 @@
     </header>
 
     <main>
-            <h2>Telefones</h2>
-            <!-- Formulário para adicionar telefones -->
-            <form id="formTelefones">
-                <label for="numeroTelefone">Número:</label>
-                <input type="text" id="numeroTelefone" name="numeroTelefone">
+        <h2>Telefones</h2>
+        <!-- Formulário para adicionar telefones -->
+        <form id="formTelefones">
+            <label for="numeroTelefone">Número:</label>
+            <input type="text" id="numeroTelefone" name="numeroTelefone">
 
-                <label for="id_hotel">id_hotel:</label>
-                <input type="text" id="id_hotel" name="id_hotel">
+            <label for="id_hotel">id_hotel:</label>
+            <input type="text" id="id_hotel" name="id_hotel">
 
-                <button type="submit">Adicionar Telefone</button>
-            </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Telefone</th>
-                        <th>id_hotel</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="telefonesTableBody">
-                    
-                    <!-- Dados dos telefones serão inseridos aqui dinamicamente -->
-                </tbody>
-            </table>
+            <button type="button" id="adicionarTelefoneBtn">Adicionar Telefone</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Telefone</th>
+                    <th>id_hotel</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="telefonesTableBody">
+                <!-- Dados dos telefones serão inseridos aqui dinamicamente -->
+            </tbody>
+        </table>
     </main>
 
     <footer>

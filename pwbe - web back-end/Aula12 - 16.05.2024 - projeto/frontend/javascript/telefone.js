@@ -41,12 +41,40 @@ function displayData(data) {
     });
 }
 
+function adicionarNovoTelefone() {
+    const telefone = document.getElementById("numeroTelefone").value;
+    const id_hotel = document.getElementById("id_hotel").value;
+
+    if (telefone !== "" && id_hotel !== "") {
+        const novoItem = { telefone: telefone, id_hotel: parseInt(id_hotel) };
+        adicionarItem(novoItem);
+    }
+}
+
+function adicionarItem(novoItem) {
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(novoItem)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao adicionar item.');
+        }
+        loadItens();
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
+
 function editarItemForm(id, telefone, id_hotel) {
     const novoTelefone = prompt("Digite o novo telefone:", telefone);
     const novoIdHotel = prompt("Digite o novo id do hotel:", id_hotel);
     
     if (novoTelefone !== null && novoIdHotel !== null) { 
-        // Converte os valores para números
         const novoItem = { telefone: novoTelefone, id_hotel: parseInt(novoIdHotel) };
         editarItem(id, novoItem); 
     }
@@ -86,4 +114,12 @@ function excluirItem(id) {
     });
 }
 
-loadItens();
+// Função para adicionar evento de clique ao botão "Adicionar Telefone"
+function setupAdicionarTelefoneButton() {
+    const adicionarTelefoneBtn = document.getElementById('adicionarTelefoneBtn');
+    adicionarTelefoneBtn.addEventListener('click', adicionarNovoTelefone);
+}
+
+// Chamada para carregar os itens e configurar o botão
+ loadItens();
+ setupAdicionarTelefoneButton();
