@@ -49,10 +49,11 @@ function formatDate(dateString) {
     return `${day}/${month}/${year}`;
 }
 
-function editarItemForm(destinos, id, nome) {
+function editarItemForm(destinos, id, nome, valor) {
     const novoNome = prompt("Digite o novo nome:", nome);
-    if (novoNome !== null) {
-        editarItem(destinos, id, { nome: novoNome });
+    const novoValor = prompt("Digite o novo valor:", valor);
+    if (novoNome !== null && novoValor !== null) { 
+        editarItem(destinos, id, { nome: novoNome, valor: novoValor });
     }
 }
 

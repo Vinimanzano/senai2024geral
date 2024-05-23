@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const hoteis = require('./controllers/hoteis')
 const destinos = require('./controllers/destinos')
-const telefones = require('./controllers/telefones')
+const telefoneController = require('./controllers/telefones')
 const pontos_turisticos = require('./controllers/pontos_turisticos')
 
 router.get('/', (req, res) => {
@@ -19,10 +19,10 @@ router.get('/hoteis', hoteis.read);
 router.put('/hoteis/:id', hoteis.update);
 router.delete('/hoteis/:id', hoteis.del);
 
-router.post('/telefones', telefones.create);
-router.get('/telefones', telefones.read);
-router.put('/telefones/:id', telefones.update);
-router.delete('/telefones/:id', telefones.del);
+router.post('/telefones', telefoneController.create);
+router.get('/telefones', telefoneController.read);
+router.put('/telefones/:id', telefoneController.update);
+router.delete('/telefones/:id', telefoneController.del);
 
 router.post('/pontos_turisticos', pontos_turisticos.create);
 router.get('/pontos_turisticos', pontos_turisticos.read);

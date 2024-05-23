@@ -1,72 +1,99 @@
-// Importe o PrismaClient
+// controllers/hoteis.js
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-//CREATE
+//Create
 const create = async (req, res) => {
-    const data = req.body;
     try {
-        const destino = await prisma.destinos.create({
-            data: { nome: data.nome, valor: data.valor, data: data.data }
+        const data = req.body;
+        // Verificar se id_destino está presente nos dados
+        if (!data.id_destino) {
+            throw new Error("O campo id_destino é obrigatório.");
+        }
+
+        // Convertendo avaliacao para string
+        data.avaliacao = String(data.avaliacao);
+
+        const hotel = await prisma.hoteis.create({
+            data: {
+                nome: data.nome,
+                valor: data.valor,
+                avaliacao: data.avaliacao,
+                email: data.email,
+                site: data.site,
+                id_destino: parseInt(data.id_destino) // Adicione essa linha para definir o id_destino
+            }
         });
-        res.status(201).json(destino).end();
+        res.status(201).json(hotel);
     } catch (error) {
-        console.error('Erro:', error);
-        res.status(500).json({ error: 'Erro ao criar destino' });
+        console.error("Erro ao criar hotel:", error);
+        res.status(500).send("Erro ao criar hotel");
     }
-}
+};
 
 //READ
 const read = async (req, res) => {
     try {
-        const destinos = await prisma.destinos.findMany({
+        const hoteis = await prisma.hoteis.findMany({
             include: {
-                hoteis: {
-                    include: {
-                        telefones: true
-                    }
-                },
-                pontos: true
+                telefones: true
             }
         });
-        res.status(200).json(destinos).end();
+        res.status(200).json(hoteis);
     } catch (error) {
-        console.error('Erro:', error);
-        res.status(500).json({ error: 'Erro ao recuperar destinos' });
+        console.error("Erro ao buscar hotéis:", error);
+        res.status(500).send("Erro ao buscar hotéis");
     }
-}
+};
 
 //UPDATE
 const update = async (req, res) => {
-    const data = req.body;
     try {
-        const destino = await prisma.destinos.update({
-            where: { id: Number(req.params.id) },
-            data
+        const data = req.body;
+        // Convertendo o id_destino para número inteiro
+        data.id_destino = parseInt(data.id_destino);
+        const hotel = await prisma.hoteis.update({
+            where: {
+                id: 1
+            },
+            data: data // Usando os dados recebidos do corpo da requisição
         });
-        res.status(200).json(destino).end();
+        res.status(200).json(hotel);
     } catch (error) {
-        console.error('Erro:', error);
-        res.status(500).json({ error: 'Erro ao atualizar destino' });
+        console.error("Erro ao atualizar hotel:", error);
+        res.status(500).json({ error: "Erro interno do servidor" });
     }
-}
+};
 
 //DELETE
 const del = async (req, res) => {
+    const { id } = req.params;
     try {
-        const destino = await prisma.destinos.delete({
-            where: { id: Number(req.params.id) }
+        const hoteis = await prisma.hoteis.findMany({
+            where: {
+                id_destino: parseInt(id)
+            }
         });
-        res.status(200).json(destino).end();
+        if (hoteis.length > 0) {
+            return res.status(400).json({ error: "Não é possível excluir este destino, pois existem hotéis associados a ele." });
+        }
+        await prisma.destinos.delete({
+            where: {
+                id: parseInt(id)
+            }
+        });
+
+        res.status(200).json({ message: "Destino excluído com sucesso." });
     } catch (error) {
-        console.error('Erro:', error);
-        res.status(500).json({ error: 'Erro ao excluir destino' });
+        console.error("Erro ao excluir destino:", error);
+        res.status(500).json({ error: "Erro interno do servidor" });
     }
-}
+};
+
 
 module.exports = {
     create,
     read,
     update,
-    del,
-}
+    del
+};

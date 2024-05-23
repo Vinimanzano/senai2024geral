@@ -1,5 +1,5 @@
 const uri = "http://localhost:3000/hoteis";
-const hoteis = [];
+let hoteis = [];
 
 function loadItens() {
     fetch(uri)
@@ -44,7 +44,7 @@ function displayData(hoteis, data) {
     });
 }
 
-function adicionarHotelForm(hoteis) {
+function adicionarHotelForm() { // Remova o parâmetro hoteis
     const nome = document.getElementById("nomeHotel").value;
     const valor = document.getElementById("valorHotel").value;
     const avaliacaoInput = document.getElementById("AvaliacaoHotel").value;
@@ -70,8 +70,10 @@ function adicionarHotelForm(hoteis) {
             return response.json();
         })
         .then(responseData => {
+            // Adicionar o novo hotel à array hoteis
             hoteis.push(responseData);
-            displayData(hoteis, hoteis);
+            // Exibir os dados atualizados
+            displayData('hoteis', hoteis);
         })
         .catch(error => {
             console.error('Erro ao adicionar hotel:', error);
@@ -84,17 +86,20 @@ function editarItemForm(hoteis, id, nome, valor, avaliacao, email, site, id_dest
     const novaAvaliacao = prompt("Digite a nova avaliação:", avaliacao);
     const novoEmail = prompt("Digite o novo email:", email);
     const novoSite = prompt("Digite o novo site:", site);
+    const novoIdDestino = prompt("Digite o novo ID do destino:", id_destino); // Adicionado o prompt para o novo ID do destino
     if (
         novoNome !== null &&
         novoValor !== null &&
         novaAvaliacao !== null &&
         novoEmail !== null &&
-        novoSite !== null
+        novoSite !== null &&
+        novoIdDestino !== null
     ) {
-        const novoItem = { nome: novoNome, valor: novoValor, avaliacao: novaAvaliacao, email: novoEmail, site: novoSite, id_destino: id_destino };
+        const novoItem = { nome: novoNome, valor: novoValor, avaliacao: novaAvaliacao, email: novoEmail, site: novoSite, id_destino: novoIdDestino }; // Adicionado o novo ID do destino
         editarItem(hoteis, id, novoItem);
     }
 }
+
 
 function editarItem(hoteis, id, novoItem) {
     fetch(`${uri}/${id}`, {

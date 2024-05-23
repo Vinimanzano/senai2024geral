@@ -1,25 +1,27 @@
 const uri = "http://localhost:3000/pontos_turisticos";
-const itens = [];
+let pontos_turisticos = [];
 
 function loadItens() {
     fetch(uri)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar Pontos Turisticos');
+            }
+            return response.json();
+        })
         .then(data => {
-            // Limpa o array antes de adicionar os novos dados
-            itens.length = 0;
-            itens.push(...data);
-            console.log(itens);
-            displayData('pontos_turisticos', itens);
+            itens = data;
+            displayData(itens);
         })
         .catch(error => {
-            console.error('Erro ao carregar itens:', error);
+            console.error('Erro:', error);
         });
 }
 
-function displayData(pontos_turisticos, data) {
-    const tableBody = document.getElementById(`${pontos_turisticos}TableBody`);
+function displayData(data) {
+    const tableBody = document.getElementById('pontos_turisticosTableBody');
     if (!tableBody) {
-        console.error(`Elemento ${pontos_turisticos}TableBody não encontrado.`);
+        console.error('Elemento pontos_turisticosTableBody não encontrado.');
         return;
     }
     tableBody.innerHTML = '';
@@ -27,12 +29,13 @@ function displayData(pontos_turisticos, data) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${item.id}</td>
-            <td>${item.nome}</td>
-            <td>${item.descricao}</td>
-            <td>${item.localizacao}</td>
-            <td>${formatarData(item.data)}</td> <!-- Formatando a data -->
+            <td>${item.nome || ''}</td>
+            <td>${item.endereco || ''}</td>
+            <td>${item.telefone || ''}</td>
+            <td>${item.valor !== undefined ? item.valor : ''}</td>
+            <td>${item.id_destino !== undefined ? item.id_destino : ''}</td>
             <td>
-                <button onclick="editarItemForm('${pontos_turisticos}', ${item.id}, '${item.nome}')">Editar</button>
+                <button onclick="editarItemForm(${item.id}, '${item.nome}')">Editar</button>
                 <button onclick="excluirItem(${item.id})">Excluir</button>
             </td>
         `;
@@ -43,21 +46,22 @@ function displayData(pontos_turisticos, data) {
 function formatarData(data) {
     const dataObj = new Date(data);
     const dia = dataObj.getDate().toString().padStart(2, '0');
-    const mes = (dataObj.getMonth() + 1).toString().padStart(2, '0'); // Os meses são indexados de 0 a 11
+    const mes = (dataObj.getMonth() + 1).toString().padStart(2, '0');
     const ano = dataObj.getFullYear();
     return `${dia}/${mes}/${ano}`;
 }
 
-function adicionarItemForm(pontos_turisticos) {
-    const nome = document.getElementById(`${pontos_turisticos}Nome`).value;
-    const descricao = document.getElementById(`${pontos_turisticos}Descricao`).value;
-    const localizacao = document.getElementById(`${pontos_turisticos}Localizacao`).value;
-    const data = document.getElementById(`${pontos_turisticos}Data`).value;
-    if (!nome || !descricao || !localizacao || !data) {
+function adicionarItemForm() {
+    const nome = document.getElementById('nomePontoTuristico').value;
+    const endereco = document.getElementById('enderecoPontoTuristico').value;
+    const telefone = document.getElementById('telefonePontoTuristico').value;
+    const valor = document.getElementById('valorPontoTuristico').value;
+    const id_destino = document.getElementById('id_destino').value;
+    if (!nome || !endereco || !telefone || !valor || !id_destino) {
         console.error('Por favor, preencha todos os campos.');
         return;
     }
-    const novoItem = { nome, descricao, localizacao, data };
+    const novoItem = { nome, endereco, telefone, valor, id_destino };
     fetch(uri, {
         method: 'POST',
         headers: {
@@ -73,21 +77,27 @@ function adicionarItemForm(pontos_turisticos) {
         })
         .then(responseData => {
             itens.push(responseData);
-            displayData(pontos_turisticos, itens);
+            displayData(itens);
         })
         .catch(error => {
             console.error('Erro ao adicionar item:', error);
         });
 }
 
-function editarItemForm(pontos_turisticos, id, nome) {
+function editarItemForm(id, nome, endereco, telefone, valor, id_destino) {
     const novoNome = prompt("Digite o novo nome:", nome);
-    if (novoNome !== null) {
-        editarItem(pontos_turisticos, id, { nome: novoNome });
+    const novoEndereco = prompt("Digite o novo endereço:", endereco);
+    const novoTelefone = prompt("Digite o novo telefone:", telefone);
+    const novoValor = prompt("Digite o novo valor:", valor);
+    const novoIdDestino = prompt("Digite o novo id_destino:", id_destino);
+    
+    if (novoNome !== null && novoEndereco !== null && novoTelefone !== null && novoValor !== null && novoIdDestino !== null) {
+        const novoItem = { id, nome: novoNome, endereco: novoEndereco, telefone: novoTelefone, valor: parseFloat(novoValor), id_destino: parseInt(novoIdDestino) };
+        editarItem(id, novoItem);
     }
 }
 
-function editarItem(pontos_turisticos, id, novoItem) {
+function editarItem(id, novoItem) {
     fetch(`${uri}/${id}`, {
         method: 'PUT',
         headers: {
@@ -97,7 +107,7 @@ function editarItem(pontos_turisticos, id, novoItem) {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro ${response.status}: ${response.statusText} ao editar o item com ID ${id} em ${pontos_turisticos}`);
+                throw new Error(`Erro ${response.status}: ${response.statusText} ao editar o item com ID ${id}`);
             }
             loadItens();
         })
@@ -105,6 +115,7 @@ function editarItem(pontos_turisticos, id, novoItem) {
             console.error('Erro ao editar item:', error);
         });
 }
+
 
 function excluirItem(id) {
     fetch(`${uri}/${id}`, {

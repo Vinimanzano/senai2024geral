@@ -120,9 +120,12 @@ div .legenda{
     left: 720px;    
 }
 
-thead tr{
-    display: flex;
-    gap: 5px;
+tbody tr td{
+    font-family: var(--Bakbak);
+    font-size: 1.8rem;
+    color: var(--color5);
+    text-align: center;
+    border: 1px solid var(--color5);
 }
 
 table tr th{
