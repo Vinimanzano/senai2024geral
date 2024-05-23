@@ -22,8 +22,8 @@ a{
     --color2: rgb(245, 222, 16);  
     --color3: rgb(228, 91, 12);
     --color4: rgb(255, 0, 0);
-    --color5: rgb(0, 0, 0);
-    --color6: rgb(255, 255, 255);
+    --color5: rgb(155, 89, 155);
+    --color6: rgb(166, 121, 170);
     --color7: rgba(0, 17, 255, 0.2);
     --color8: rgba(0, 17, 255, 0.1);
     --color9: rgba(0, 17, 255, 0.05);
@@ -31,6 +31,7 @@ a{
     --color11: rgba(180, 200, 35);
     --Bakbak: "Bakbak One", sans-serif;
     --gray: rgb(218, 209, 209);
+    --pink: linear-gradient(#834c4c, #7575ac);
 }
 
 body{
@@ -62,7 +63,7 @@ header img{
 
 .btn-topo ul li{
     list-style: none;
-    color: var(--color5);
+    color: var(--black);
     transition: 0.5s;
 }
 
@@ -93,8 +94,13 @@ main div p {
     position: absolute;
     font-size: 2rem;
     color: var(--white);
-    top: -40%;
+    top: -40%;   
 }
+
+.card p:hover {
+    transition: 0.5s;
+    color: var(--color3);
+  }
 
 .card:nth-child(1){
     left: 55%;
@@ -123,19 +129,61 @@ div .legenda{
 tbody tr td{
     font-family: var(--Bakbak);
     font-size: 1.8rem;
-    color: var(--color5);
+    color: var(--black);
     text-align: center;
-    border: 1px solid var(--color5);
+    border: 1px solid var(--black);
 }
+
+button {
+    font-size: 15px;
+    color: var(--black);
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+  }
+  
+  button:focus,
+  button:hover {
+    color: var(--whitesmoke);
+  }
+  
+  button:focus:after,
+  button:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+  
+  button:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--white);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
 
 table tr th{
     font-family: var(--Bakbak);
     font-size: 1.8rem;
-    color: var(--color5);
+    color: var(--black);
     font-weight: 400;
     padding: 15px;
     text-align: center;
-    border: 1px solid var(--color5);
+    border: 1px solid var(--black);
+    color: var(--whitesmoke);
+    border-radius: 2px;
 }
 
 footer{
@@ -144,15 +192,14 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--gray);
+    background-color: var(--color6);
     gap: 20px;
 }
 
 footer div {
     display: flex;
     font-size: 1.6rem;
-    gap: 25px;
-    
+    gap: 25px;   
 }
 
 footer i {
@@ -164,7 +211,6 @@ footer i:hover{
     transition: 0.5s;
 }
 
- 
   .card::before {
     content: '';
     position: absolute;
@@ -196,15 +242,6 @@ footer i:hover{
     font-weight: 700;
   }
   
-  .card p:not(.heading) {
-    font-size: 14px;
-  }
-  
-  .card p:last-child {
-    color: #e81cff;
-    font-weight: 600;
-  }
-  
   .card:hover::after {
     filter: blur(30px);
   }
@@ -212,7 +249,3 @@ footer i:hover{
   .card:hover::before {
     transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
   }
-  
-  
-
-  
