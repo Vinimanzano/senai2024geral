@@ -26,14 +26,17 @@
         
             <h2>Destinos</h2>
             <!-- Formulário para adicionar destinos -->
-            <form id="formDestinos" onsubmit="event.preventDefault(); adicionarItemForm('destinos')">
-                <label for="destinosNome">Nome:</label>
-                <input type="text" id="destinosNome" name="nomeDestino">
-                <label for="destinosValor">Valor:</label>
-                <input type="number" id="destinosValor" name="valorDestino">
-                <label for="destinosData">Data:</label>
-                <input type="date" id="destinosData" name="dataDestino" placeholder="">
-                <button type="submit">Adicionar Destino</button>
+            <form id="formDestinos">
+                <label for="nomeDestino">Nome:</label>
+                <input type="text" id="nomeDestino" name="nomeDestino">
+                
+                <label for="valorDestino">Valor:</label>
+                <input type="text" id="valorDestino" name="valorDestino">
+                
+                <label for="dataDestino">Data:</label>
+                <input type="date" id="dataDestino" name="dataDestino">
+
+                <button type="button" onclick="adicionarItemForm('destinos')">Adicionar Destino</button>
             </form>
             <table>
                 <thead>
