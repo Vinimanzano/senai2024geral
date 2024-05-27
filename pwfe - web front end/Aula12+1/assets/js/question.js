@@ -91,4 +91,4 @@ const question = [
     }
 ];
 
-export default question;
+export { question };

@@ -6,8 +6,7 @@ function loadItens() {
         .then(response => response.json())
         .then(data => {
             // Limpa o array antes de adicionar os novos dados
-            hoteis.length = 0;
-            hoteis.push(...data);
+            hoteis = data;
             console.log(hoteis);
             displayData('hoteis', hoteis);
         })
@@ -16,12 +15,12 @@ function loadItens() {
         });
 }
 
-function displayData(hoteis, data) {
-    const tableBody = document.getElementById(`${hoteis}TableBody`);
+function displayData(elementId, data) {
+    const tableBody = document.getElementById(`${elementId}TableBody`);
     if (!tableBody) {
         const errorMessage = document.getElementById("error-message");
         errorMessage.style.display = "block";
-        console.error(`Elemento ${hoteis}TableBody não encontrado.`);
+        console.error(`Elemento ${elementId}TableBody não encontrado.`);
         return;
     }
     tableBody.innerHTML = '';
@@ -36,7 +35,7 @@ function displayData(hoteis, data) {
             <td>${item.site}</td>
             <td>${item.id_destino}</td>
             <td>
-                <button onclick="editarItemForm('${hoteis}', ${item.id}, '${item.nome}', '${item.valor}', '${item.avaliacao}', '${item.email}', '${item.site}', '${item.id_destino}')">Editar</button>
+                <button onclick="editarItemForm(${item.id})">Editar</button>
                 <button onclick="excluirItem(${item.id})">Excluir</button>
             </td>
         `;
@@ -44,12 +43,10 @@ function displayData(hoteis, data) {
     });
 }
 
-function adicionarHotelForm() { // Remova o parâmetro hoteis
+function adicionarHotelForm() {
     const nome = document.getElementById("nomeHotel").value;
     const valor = document.getElementById("valorHotel").value;
-    const avaliacaoInput = document.getElementById("AvaliacaoHotel").value;
-    const avaliacao = parseFloat(avaliacaoInput); // Converter para número
-
+    const avaliacao = parseFloat(document.getElementById("AvaliacaoHotel").value);
     const email = document.getElementById("emailHotel").value;
     const site = document.getElementById("siteHotel").value;
     const id_destino = document.getElementById("id_destino").value;
@@ -70,7 +67,7 @@ function adicionarHotelForm() { // Remova o parâmetro hoteis
             return response.json();
         })
         .then(responseData => {
-            // Adicionar o novo hotel à array hoteis
+            // Adicionar o novo hotel ao array hoteis
             hoteis.push(responseData);
             // Exibir os dados atualizados
             displayData('hoteis', hoteis);
@@ -80,13 +77,18 @@ function adicionarHotelForm() { // Remova o parâmetro hoteis
         });
 }
 
-function editarItemForm(hoteis, id, nome, valor, avaliacao, email, site, id_destino) {
-    const novoNome = prompt("Digite o novo nome:", nome);
-    const novoValor = prompt("Digite o novo valor:", valor);
-    const novaAvaliacao = prompt("Digite a nova avaliação:", avaliacao);
-    const novoEmail = prompt("Digite o novo email:", email);
-    const novoSite = prompt("Digite o novo site:", site);
-    const novoIdDestino = prompt("Digite o novo ID do destino:", id_destino); // Adicionado o prompt para o novo ID do destino
+function editarItemForm(id) {
+    const hotel = hoteis.find(hotel => hotel.id === id);
+    if (!hotel) {
+        console.error('Hotel não encontrado.');
+        return;
+    }
+    const novoNome = prompt("Digite o novo nome:", hotel.nome);
+    const novoValor = prompt("Digite o novo valor:", hotel.valor);
+    const novaAvaliacao = prompt("Digite a nova avaliação:", hotel.avaliacao);
+    const novoEmail = prompt("Digite o novo email:", hotel.email);
+    const novoSite = prompt("Digite o novo site:", hotel.site);
+    const novoIdDestino = prompt("Digite o novo ID do destino:", hotel.id_destino);
     if (
         novoNome !== null &&
         novoValor !== null &&
@@ -95,13 +97,12 @@ function editarItemForm(hoteis, id, nome, valor, avaliacao, email, site, id_dest
         novoSite !== null &&
         novoIdDestino !== null
     ) {
-        const novoItem = { nome: novoNome, valor: novoValor, avaliacao: novaAvaliacao, email: novoEmail, site: novoSite, id_destino: novoIdDestino }; // Adicionado o novo ID do destino
-        editarItem(hoteis, id, novoItem);
+        const novoItem = { nome: novoNome, valor: novoValor, avaliacao: novaAvaliacao, email: novoEmail, site: novoSite, id_destino: novoIdDestino };
+        editarItem(id, novoItem);
     }
 }
 
-
-function editarItem(hoteis, id, novoItem) {
+function editarItem(id, novoItem) {
     fetch(`${uri}/${id}`, {
         method: 'PUT',
         headers: {
@@ -137,7 +138,7 @@ function excluirItem(id) {
 
 document.getElementById('formHoteis').addEventListener('submit', function(event) {
     event.preventDefault();
-    adicionarHotelForm('hoteis');
+    adicionarHotelForm();
 });
 
 loadItens();

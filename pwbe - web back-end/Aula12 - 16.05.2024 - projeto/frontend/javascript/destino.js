@@ -75,18 +75,20 @@ async function editarItem(destinos, id, novoItem) {
     }
 }
 
-async function excluirItem(id) {
-    try {
-        const response = await fetch(`${uri}/${id}`, {
-            method: 'DELETE'
+function excluirItem(id) {
+    fetch(`${uri}/${id}`, {
+        method: 'DELETE'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro ${response.status}: ${response.statusText} ao excluir o item com ID ${id}`);
+            }
+            // Se a exclusão for bem-sucedida, recarregue os itens
+            loadItens();
+        })
+        .catch(error => {
+            console.error('Erro ao excluir item:', error);
         });
-        if (!response.ok) {
-            throw new Error(`Erro ${response.status}: ${response.statusText} ao excluir o item com ID ${id}`);
-        }
-        loadItens(); // Corrigido para recarregar os itens após a exclusão
-    } catch (error) {
-        console.error('Erro:', error);
-    }
 }
 
 function adicionarItemForm(destinos) {

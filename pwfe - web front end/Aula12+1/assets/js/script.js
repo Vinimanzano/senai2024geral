@@ -1,4 +1,4 @@
-import question from "./question.js";
+import { question } from "./question.js";
 
 const questionContainer = document.querySelector(".question");
 const answersContainer = document.querySelector(".answers");
@@ -12,13 +12,13 @@ let questionCorrect = 0;
 
 btnRestart.onclick = () => {
     questionContainer.style.display = "flex";
+    answersContainer.style.display = "block";
     contentFinish.style.display = "none";
 
     currentIndex = 0;
     questionCorrect = 0;
     loadQuestion();
 }
-
 function nextQuestion(e) {
     if (e.target.getAttribute("data-correct") === "true") {
         questionCorrect++;
@@ -28,12 +28,18 @@ function nextQuestion(e) {
         loadQuestion();
     } else {
         finish();
+        questionContainer.style.display = "none";
     }
 }
 
 function finish() {
-    textFinish.innerHTML = `Você Acertou! ${questionCorrect} de ${question.length} questões`;
+    if (questionCorrect === question.length) {
+        textFinish.innerHTML = `Parabéns! Você acertou todas as ${question.length} questões!`;
+    } else {
+        textFinish.innerHTML = `Você acertou ${questionCorrect} de ${question.length} questões.`;
+    }
     questionContainer.style.display = "none";
+    answersContainer.style.display = "none";
     contentFinish.style.display = "flex";
 }
 
@@ -56,4 +62,4 @@ function loadQuestion() {
     });
 }
 
-loadQuestion();
+loadQuestion(); 
