@@ -1,8 +1,12 @@
 const express = require('express')
-const routes = express.Router()
+const router = express.Router()
 
 const turma = require('./controller/turma')
+const aluno = require('./controller/aluno')
+const professor = require('./controller/professor')
 
-routes.get('/turma', turma.iniciar)
+router.get('/', turma.iniciar)
+router.get('/aluno', aluno.iniciar)
+router.get('/professor', professor.iniciar)
 
-module.exports = routes
+module.exports = router

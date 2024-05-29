@@ -11,14 +11,31 @@ html(lang="pt-br")
             h1 Escola ACME
         main
             nav
-                ul
-                    li Turmas
-                    li Alunos
-                    li Professores
+                button(onclick="window.location.href='/'") Turmas
+                button(onclick="window.location.href='/aluno'") Alunos
+                button(onclick="window.location.href='/professor'") Professores
             div(class="container")
                 each turma in turmas
                     div(class="card")
-                        p(class="titulo") #{turma.id} - #{turma.abreviacao}
-                        p(class="dados") #{turma.abreviacao}
+                        p(class="titulo")
+                            b Turma:
+                            i #{turma.abreviacao}
                         p(class="dados") #{turma.nome}
-        footer
+                        p(class="dados")
+                            b Id da turma:
+                            i #{turma.id}
+                        button Detalhes
+        footer 
+            button(onclick="modalCreate.classList.remove('oculto)") Nova Turma
+            h2 by: Vinícius Manzano
+            div(class="modal oculto", id="modalCreate")
+                div(class="form")
+                  div 
+                    h2 Cadastro de Turma
+                    button(onclick="modalCreate.classList.add('oculto)") X
+                form
+                    label nome
+                    input(type="text", name="nome", placeholder="Digite o nome da Turma")
+                    label Abreviacao
+                    input(type="text", name="abreviacao", placeholder="Sigla")
+                    input(type="submit", value="Cadastrar nova turma")

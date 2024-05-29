@@ -1,10 +1,19 @@
 {
-  "name": "schoolprismapug",
+  "name": "escolaprismapug",
   "version": "1.0.0",
   "description": "Simples projeto backend integrado, exemplo de um fullstack integrado",
   "main": "app.js",
   "directories": {
     "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prisma": "^5.14.0"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
@@ -12,11 +21,5 @@
     "express": "^4.19.2",
     "method-override": "^3.0.0",
     "pug": "^3.0.2"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
