@@ -42,7 +42,6 @@ const update = async (req, res) => {
         const data = req.body;
         const id_destino = parseInt(data.id_destino);
 
-        // Verifique se o destino com o ID fornecido existe no banco de dados
         const destinoExists = await prisma.destinos.findUnique({
             where: {
                 id: Number(req.params.id)
@@ -83,14 +82,12 @@ const update = async (req, res) => {
 const del = async (req, res) => {
     const { id } = req.params;
     try {
-        // Verifica se há hotéis associados ao destino
         const hoteis = await prisma.hoteis.findMany({
             where: {
                 id_destino: parseInt(id)
             }
         });
 
-        // Se existirem hotéis associados, exibe uma mensagem de erro
         if (hoteis.length > 0) {
             return res.status(400).json({ error: "Não é possível excluir este destino, pois existem hotéis associados a ele." });
         }

@@ -4,7 +4,7 @@ function getCurrentYear() {
 
 function updateCopyright() {
     const year = getCurrentYear();
-    const copyrightText = `Copyright © ${year} by Vinícius Manzano | All Rights Reserved.`;
+    const copyrightText = `Copyright © ${year} Tour and Travel | All Rights Reserved.`;
     document.getElementById("copyright").innerHTML = copyrightText;
 }
 
