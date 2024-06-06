@@ -9,6 +9,11 @@ html(lang="pt-br")
     body
         header
             h1 Escola ACME
+            img(id="bmenu", onclick="menu.classList.toggle('oculto')", src="menu.png")
+        nav(class="menu oculto", id="menu")
+            button(onclick="window.location.href='/'") Turmas
+            button(onclick="window.location.href='/aluno'") Alunos
+            button(onclick="window.location.href='/professor'") Professores
         main
             nav
                 button(onclick="window.location.href='/'") Turmas
@@ -18,15 +23,35 @@ html(lang="pt-br")
                 table
                     thead
                         tr
-                            th ID
+                            th Id
                             th Nome Completo
                             th Especialidade
                             th Turmas
+                            th Ações
                     tbody
                         each professor in professores
                             tr
                                 td= professor.id
                                 td= professor.nome
                                 td= professor.especialidade
-                                td Aguardando
+                                td 
+                                    each turma in professor.turmas
+                                        p= turma.turma.abreviacao
+                                td
+                                    button(onclick=`prof${professor.id}.classList.remove('oculto')`, style="width: fit-content;") &nbsp;*&nbsp;
+                                    div(class="modal oculto",id=`prof${professor.id}`)
+                                        div(class="janela")
+                                            div(class="modalCabecalho")
+                                                h3 Alterar dados do professor Id: #{professor.id}
+                                                button(onclick=`prof${professor.id}.classList.add('oculto')`) &nbsp;X&nbsp;
+                                            form(action=`/professor/${professor.id}?_method=PUT`, method='POST')
+                                                div(class="grade")
+                                                    label Nome:
+                                                    input(type="text", name="nome", value=professor.nome, required)
+                                                    label Especiaidade:
+                                                    input(type="text", name="especialidade", value=professor.especialidade, required)
+                                                input(type="submit",value="Alterar")
+
         footer
+            button Novo Professor
+            h2 By Viní Manzano

@@ -14,20 +14,15 @@ const listar = async (req, res) => {
                     nascimento: true
                 }
             },
-            professor: {
+            professores: {
                 select: {
-                    professor: {
-                        select: {
-                            nome: true
-                        }
-                    }
+                    professor: true,
                 }
-            }
+            },
         }
     });
     res.render('index', { turmas: turmas });
 }
-
 
 const criar = async (req, res) => {
     const turma = await prisma.turma.create({

@@ -1,3 +1,4 @@
+use escola;
 insert into turma values
 (1,"Desenvolvimento de Sistemas Segundo Semestre","2DES"),
 (2,"Desenvolvimento de Sistemas Primeiro Semestre Integrado JULIA","1DES"),

@@ -1,3 +1,9 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,19 +13,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Professor {
+model Professor{
   id Int @id @default(autoincrement())
   nome String @db.VarChar(255)
-  especidalidade String? @db.VarChar(255)
+  especialidade String? @db.VarChar(255)
   turmas Leciona[]
 }
 
-model Aluno {
+model Aluno{
   ra String @db.VarChar(8) @id
   nome String @db.VarChar(255)
-  nascimento DateTime 
-  idturma Int
-  turma Turma @relation(fields: [idturma], references: [id])
+  nascimento DateTime
+  idTurma Int
+  turma Turma @relation(fields: [idTurma], references: [id])
 }
 
 model Turma {
@@ -27,13 +33,13 @@ model Turma {
   nome String @db.VarChar(255)
   abreviacao String @db.VarChar(6)
   alunos Aluno[]
-  turmas Leciona[]
+  professores Leciona[]
 }
 
-model Leciona {
+model Leciona{
   id Int @id @default(autoincrement())
-  idProfessor Int
+  idProf Int
   idTurma Int
-  professor Professor @relation(fields: [idProfessor], references: [id])
+  professor Professor @relation(fields: [idProf], references: [id])
   turma Turma @relation(fields: [idTurma], references: [id])
 }

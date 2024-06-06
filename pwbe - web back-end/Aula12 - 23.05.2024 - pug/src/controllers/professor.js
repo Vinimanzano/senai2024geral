@@ -2,24 +2,20 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 const listar = async (req, res) => {
-    const turmas = await prisma.turma.findMany({
+    const professores = await prisma.professor.findMany({
         select: {
             id: true,
             nome: true,
-            abreviacao: true,
-            alunos: {
+            especialidade: true,
+            turmas: {
                 select: {
-                    ra: true,
-                    nome: true,
-                    nascimento: true
+                    turma: true,
                 }
-            },
-            professores: true
+            }
         }
     });
-    res.render('index', { turmas: turmas });
+    res.render('professor', { professores: professores });
 }
-
 
 const alterar = async (req, res) => {
     const resultado = await prisma.professor.update({

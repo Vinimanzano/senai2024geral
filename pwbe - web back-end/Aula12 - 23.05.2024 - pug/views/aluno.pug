@@ -9,11 +9,16 @@ html(lang="pt-br")
     body
         header
             h1 Escola ACME
+            img(id="bmenu", onclick="menu.classList.toggle('oculto')", src="menu.png")
+        nav(class="menu oculto", id="menu")
+            button(onclick="window.location.href='/'") Turmas
+            button(onclick="window.location.href='/aluno'") Alunos
+            button(onclick="window.location.href='/professor'") Professores
         main
             nav
                 button(onclick="window.location.href='/'") Turmas
                 button(onclick="window.location.href='/aluno'") Alunos
-                button(onclick="window.location.href='/professor") Professores
+                button(onclick="window.location.href='/professor'") Professores
             div(class="container")
                 table
                     thead
@@ -22,12 +27,25 @@ html(lang="pt-br")
                             th Nome Completo
                             th Nascimento
                             th Turma
+                            th Ações
                     tbody
                         each aluno in alunos
                             tr
                                 td= aluno.ra
                                 td= aluno.nome
                                 td
-                                    input(type='date', value=new Date(aluno.nascimento).toISOString().substring(0, 10), disabled=true)
+                                    input(type="date", value=new Date(aluno.nascimento).toISOString().substring(0, 10), disabled=true, style="text-align:right;")
                                 td= aluno.idTurma
+                                td
+                                    button(onclick=`${aluno.ra}.classList.remove('oculto')`, style="width: fit-content;") &nbsp;-&nbsp;
+                                    div(class="modal oculto",id=aluno.ra)
+                                        div(class="janela")
+                                            div(class="modalCabecalho")
+                                                h3 Confirma a exclusão do aluno RA: #{aluno.ra}
+                                                button(onclick=`${aluno.ra}.classList.add('oculto')`) &nbsp;X&nbsp;
+                                            form(action="/aluno?_method=DELETE", method='POST')
+                                                input(type="hidden", name="ra", value=aluno.ra)
+                                                input(type="submit",value="Excluir")
         footer
+            button Novo Aluno
+            h2 By Viní Manzano

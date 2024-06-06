@@ -13,8 +13,11 @@ Simples projeto backend integrado, exemplo de um fullstack integrado
 ![DC](./docs/dc_escola_2.0.png)
 ### MER DER
 ![DC](./docs/der_escola_1.0.png)
-### Wireframe Inicial
-![WireFrame](./docs/wireframe.png)
+### Wireframes
+![WireFrame](./docs/wireframe1.png)
+![WireFrame](./docs/wireframe2.png)
+![WireFrame](./docs/wireframe3.png)
+![WireFrame](./docs/wireframe4.png)
 
 ## Para testar o projeto
 - 1 Clone este repositório
