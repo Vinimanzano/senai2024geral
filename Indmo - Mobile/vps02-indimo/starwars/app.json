@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "starwars",
-    "slug": "starwars",
+    "name": "cinema-na-mao",
+    "slug": "cinema-na-mao",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.vinimanzano.starwars"
+      "package": "com.vinimanzano.cinema-na-mao"
     },
     "web": {
       "favicon": "./assets/favicon.png"
