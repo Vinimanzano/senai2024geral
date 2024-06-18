@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "starwars",
-    "slug": "starwars",
+    "name": "cinema-na-mao",
+    "slug": "cinema-na-mao",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,16 +22,15 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.vinimanzano.starwars"
+      "package": "com.vinimanzano.cinema-na-mao"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "7f1f55b7-7067-4825-a7ae-dab48fc3b696"
+        "projectId": "ef7ed9da-d8a5-4393-b6aa-862698279467"
       }
-    },
-    "owner": "vinimanzano"
+    }
   }
 }
